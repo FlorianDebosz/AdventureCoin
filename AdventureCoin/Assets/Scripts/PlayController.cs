@@ -21,7 +21,6 @@ public class PlayController : MonoBehaviour
 
         //Up Down Movements
         moveDir = new Vector3(AxisX * moveSpeed,moveDir.y,AxisZ * moveSpeed);
-        print(moveDir);
         if(moveDir.x != 0 || moveDir.z != 0)
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(moveDir.x, 0 ,moveDir.z)), 0.15f);
         cc.Move(moveDir * Time.deltaTime);
