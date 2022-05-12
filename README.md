@@ -1,2 +1,15 @@
-﻿# AdventureCoin 
- This is my First Game Project, it's a 3D Platform Game
+﻿## Adventure Coin
+
+## :wrench: Requirements
+- New Input Manager
+- ITweens
+
+## :hammer_and_wrench: Installation
+
+- Input Manager 
+image.png
+image.png
+
+- ITweens
+image.png
+image.png
