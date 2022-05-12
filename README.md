@@ -7,9 +7,8 @@
 ## :hammer_and_wrench: Installation
 
 - Input Manager 
-image.png
-image.png
-
+![Package Manager](https://zupimages.net/viewer.php?id=22/19/98du.png)
+![Input Manager](https://zupimages.net/viewer.php?id=22/19/plm0.png)
 - ITweens
-image.png
-image.png
+![Package Manager](https://zupimages.net/viewer.php?id=22/19/98du.png)
+![ITweens](https://zupimages.net/viewer.php?id=22/19/kcyb.png)
