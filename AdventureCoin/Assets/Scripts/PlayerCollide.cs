@@ -11,4 +11,13 @@ public class PlayerCollide : MonoBehaviour
             nbCoin++;
         }
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+        if(hit.gameObject.tag == "SnailDamage"){
+            print("Aie !");
+        }else if(hit.gameObject.tag == "SnailHurted") {
+            print("Coulé !");
+            Destroy(hit.gameObject.transform.parent.gameObject,0.3f);
+        }
+    }
 }
