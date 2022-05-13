@@ -4,30 +4,45 @@ using UnityEngine.InputSystem;
 public class PlayController : MonoBehaviour
 {
     
-    public CharacterController cc;
+    private CharacterController cc;
     //Control
-    public float moveSpeed;
-    public float jumpForce;
-    public float gravity;
+    public float moveSpeed,jumpForce,gravity;
     private Vector3 moveDir;
     private float AxisZ,AxisX;
     
-        void Update() {
+    private Animator isWalkingAnim;
+    private bool isWalking;
+    
+    void Start() {
+        cc = GetComponent<CharacterController>();
+        isWalkingAnim = GetComponent<Animator>();
+        isWalking = false;
+    }
+    void Update() {
+        isWalkingAnim.SetBool("IsWalking",isWalking);
+
         //Gravity
         if(moveDir.y > -gravity) {
             moveDir.y -= gravity * Time.deltaTime;
         }
-                
 
-        //Up Down Movements
-        moveDir = new Vector3(AxisX * moveSpeed,moveDir.y,AxisZ * moveSpeed);
-        if(moveDir.x != 0 || moveDir.z != 0)
+        //Rotation And Animation Walk
+        if(moveDir.x != 0 || moveDir.z != 0) {
+            isWalking = true;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(moveDir.x, 0 ,moveDir.z)), 0.15f);
+        } else
+            isWalking = false;
+        //Movements
+
+        moveDir = new Vector3(AxisX * moveSpeed,moveDir.y,AxisZ * moveSpeed);
         cc.Move(moveDir * Time.deltaTime);
     }
+    
+    //Jump Function
     public void OnJump() {
-        if(cc.isGrounded)
+        if(cc.isGrounded) {
             moveDir.y = jumpForce;
+        }
     }
     public void OnUpDownMoves(InputValue moves) {
         AxisZ = moves.Get<float>();
