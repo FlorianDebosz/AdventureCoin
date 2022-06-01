@@ -5,11 +5,8 @@ using UnityEngine;
 public class PlayerCollide : MonoBehaviour
 {
     public int nbCoin;
-    public GameObject pickUpParticles;
-        private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Coin"){
-            GameObject CoinParticles = Instantiate(pickUpParticles, other.transform.position, Quaternion.identity);
-            Destroy(CoinParticles, 0.5f);
             Destroy(other.gameObject);
             nbCoin++;
         }
