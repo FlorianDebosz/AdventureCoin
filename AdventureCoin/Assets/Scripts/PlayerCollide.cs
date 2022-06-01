@@ -5,8 +5,12 @@ using UnityEngine;
 public class PlayerCollide : MonoBehaviour
 {
     public int nbCoin;
-    private void OnTriggerEnter(Collider other) {
+    public GameObject pickUpParticles;
+    public GameObject SnailsParticles;
+        private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Coin"){
+            GameObject CoinParticles = Instantiate(pickUpParticles, other.transform.position, Quaternion.identity);
+            Destroy(CoinParticles, 0.5f);
             Destroy(other.gameObject);
             nbCoin++;
         }
@@ -17,6 +21,8 @@ public class PlayerCollide : MonoBehaviour
             print("Aie !");
         }else if(hit.gameObject.tag == "SnailHurted") {
             print("Coulé !");
+            GameObject SnailsHit = Instantiate(SnailsParticles, hit.transform.position, Quaternion.identity);
+            Destroy(SnailsHit, 0.6f);
             Destroy(hit.gameObject.transform.parent.gameObject,0.3f);
         }
     }
