@@ -8716,6 +8716,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nbCoin: 0
+  pickUpParticles: {fileID: 8256456874746647499, guid: 28af23d07d4ff6a4da28a24309ba404d,
+    type: 3}
 --- !u!1 &1836037408 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6254053374170872225, guid: 315a266ec85512741a6539d46a35ce46,
