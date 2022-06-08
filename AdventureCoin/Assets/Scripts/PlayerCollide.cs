@@ -13,6 +13,7 @@ public class PlayerCollide : MonoBehaviour
             Destroy(CoinParticles, 0.5f);
             Destroy(other.gameObject);
             nbCoin++;
+            print(nbCoin);
         }
     }
 
@@ -23,7 +24,7 @@ public class PlayerCollide : MonoBehaviour
             print("Coulé !");
             GameObject SnailsHit = Instantiate(SnailsParticles, hit.transform.position, Quaternion.identity);
             Destroy(SnailsHit, 0.6f);
-            Destroy(hit.gameObject.transform.parent.gameObject,0.3f);
+            Destroy(hit.gameObject.transform.parent.gameObject,0.1f);
         }
     }
 }
