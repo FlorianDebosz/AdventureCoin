@@ -7,17 +7,28 @@ public class PlayerCollide : MonoBehaviour
     public int nbCoin;
     public GameObject pickUpParticles;
     public GameObject snailsParticles;
-
+    public GameObject Camera1;
     private bool contact = false;
-        private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Coin"){
             GameObject coinParticles = Instantiate(pickUpParticles, other.transform.position, Quaternion.identity);
             Destroy(coinParticles, 0.5f);
             Destroy(other.gameObject);
             nbCoin++;
-            print(nbCoin);
+        }
+
+        //Camera Gestion
+        if(other.gameObject.tag == "Cam1"){
+            Camera1.SetActive(true);
         }
     }
+
+    private void OnTriggerExit(Collider other) {
+         if(other.gameObject.tag == "Cam1"){
+            Camera1.SetActive(false);
+        }
+    }
+
 
     private void OnControllerColliderHit(ControllerColliderHit collision) {
         if(collision.gameObject.tag == "SnailDamage"){
