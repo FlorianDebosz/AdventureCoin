@@ -6,25 +6,34 @@ public class PlayerCollide : MonoBehaviour
 {
     public int nbCoin;
     public GameObject pickUpParticles;
-    public GameObject SnailsParticles;
+    public GameObject snailsParticles;
+
+    private bool contact = false;
         private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Coin"){
-            GameObject CoinParticles = Instantiate(pickUpParticles, other.transform.position, Quaternion.identity);
-            Destroy(CoinParticles, 0.5f);
+            GameObject coinParticles = Instantiate(pickUpParticles, other.transform.position, Quaternion.identity);
+            Destroy(coinParticles, 0.5f);
             Destroy(other.gameObject);
             nbCoin++;
             print(nbCoin);
         }
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit) {
-        if(hit.gameObject.tag == "SnailDamage"){
+    private void OnControllerColliderHit(ControllerColliderHit collision) {
+        if(collision.gameObject.tag == "SnailDamage"){
             print("Aie !");
-        }else if(hit.gameObject.tag == "SnailHurted") {
-            print("Coulé !");
-            GameObject SnailsHit = Instantiate(SnailsParticles, hit.transform.position, Quaternion.identity);
-            Destroy(SnailsHit, 0.6f);
-            Destroy(hit.gameObject.transform.parent.gameObject,0.1f);
+        }else if(collision.gameObject.tag == "SnailHurted" && !contact) {
+            contact = true;
+            GameObject snailsHit = Instantiate(snailsParticles, collision.transform.position, Quaternion.identity);
+            Destroy(snailsHit, 0.6f);
+            Destroy(collision.gameObject.transform.parent.gameObject,0.1f);
+            StartCoroutine("ResetContact");
         }
     }
+
+    //Coroutine permettant d'attendre 0.8 secondes et de réactiver le contact
+    IEnumerator ResetContact() {
+            yield return new WaitForSeconds(0.8f);
+            contact = false;
+    } 
 }
