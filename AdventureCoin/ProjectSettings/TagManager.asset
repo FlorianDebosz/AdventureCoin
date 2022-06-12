@@ -8,6 +8,9 @@ TagManager:
   - SnailDamage
   - SnailHurted
   - Cam1
+  - TopShell
+  - Cam2
+  - Cam3
   layers:
   - Default
   - TransparentFX
