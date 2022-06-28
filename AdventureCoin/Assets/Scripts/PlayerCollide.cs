@@ -11,6 +11,7 @@ public class PlayerCollide : MonoBehaviour
     private bool contact = false;
 
     public PlayController playController;
+    private Collider otherVarEnter, otherVarExit;
 
 
     private void Start(){
@@ -24,12 +25,18 @@ public class PlayerCollide : MonoBehaviour
             Destroy(other.gameObject);
             nbCoin++;
         }
+
+        otherVarEnter = other;
+        Invoke("CamOnTriggerEnter",0.2f);
+    }
+
+    private void CamOnTriggerEnter(){   
         //Camera Manager
-        if(other.gameObject.tag == "Cam1"){
+        if(otherVarEnter.gameObject.tag == "Cam1"){
             Camera1.SetActive(true);
             playController.camActive = 1;
             mainCam.SetActive(false);
-        } else if(other.gameObject.tag == "Cam2"){
+        } else if(otherVarEnter.gameObject.tag == "Cam2"){
             Camera2.SetActive(true);
             playController.camActive = 2;
             mainCam.SetActive(false);
@@ -37,11 +44,16 @@ public class PlayerCollide : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
-        if(other.gameObject.tag == "Cam1"){
+        otherVarExit = other;
+        Invoke("CamOnTriggerExit",0.2f);
+    }
+
+    private void CamOnTriggerExit(){
+        if(otherVarExit.gameObject.tag == "Cam1"){
             Camera1.SetActive(false);
             mainCam.SetActive(true);
             playController.camActive = 0;
-        }else if(other.gameObject.tag == "Cam2"){
+        }else if(otherVarExit.gameObject.tag == "Cam2"){
             Camera2.SetActive(false);
             mainCam.SetActive(true);
             playController.camActive = 0;
