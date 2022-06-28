@@ -7,9 +7,15 @@ public class PlayerCollide : MonoBehaviour
     public int nbCoin;
     public GameObject pickUpParticles;
     public GameObject snailsParticles;
-    public GameObject Camera1,Camera2,Camera3;
+    public GameObject mainCam,Camera1,Camera2;
     private bool contact = false;
-    public int cameraController = 0;
+
+    public PlayController playController;
+
+
+    private void Start(){
+            playController = GetComponent<PlayController>();
+    }
     private void OnTriggerEnter(Collider other) {
         //Collider with coin
         if(other.gameObject.tag == "Coin"){
@@ -21,24 +27,25 @@ public class PlayerCollide : MonoBehaviour
         //Camera Manager
         if(other.gameObject.tag == "Cam1"){
             Camera1.SetActive(true);
-            cameraController = 1;
+            playController.camActive = 1;
+            mainCam.SetActive(false);
         } else if(other.gameObject.tag == "Cam2"){
             Camera2.SetActive(true);
-            cameraController = 2;
-        } else if(other.gameObject.tag == "Cam3"){
-            Camera3.SetActive(true);
-            cameraController = 3;
-        } else
-            cameraController = 0;
+            playController.camActive = 2;
+            mainCam.SetActive(false);
+        } 
     }
 
     private void OnTriggerExit(Collider other) {
-        if(other.gameObject.tag == "Cam1")
+        if(other.gameObject.tag == "Cam1"){
             Camera1.SetActive(false);
-        else if(other.gameObject.tag == "Cam2")
+            mainCam.SetActive(true);
+            playController.camActive = 0;
+        }else if(other.gameObject.tag == "Cam2"){
             Camera2.SetActive(false);
-        else if(other.gameObject.tag == "Cam3")
-            Camera3.SetActive(false); 
+            mainCam.SetActive(true);
+            playController.camActive = 0;
+        }
     }
 
 
@@ -59,5 +66,3 @@ public class PlayerCollide : MonoBehaviour
         contact = false;
     }
 }
-
-

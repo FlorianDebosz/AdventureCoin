@@ -12,7 +12,8 @@ public class PlayController : MonoBehaviour
     
     private Animator isWalkingAnim;
     private bool isWalking;
-    
+    public int camActive;
+
     void Start() {
         cc = GetComponent<CharacterController>();
         isWalkingAnim = GetComponent<Animator>();
@@ -20,11 +21,12 @@ public class PlayController : MonoBehaviour
     }
     void Update() {
         isWalkingAnim.SetBool("IsWalking",isWalking);
-
+        print(camActive);
         //Gravity
         if(moveDir.y > -gravity) {
             moveDir.y -= gravity * Time.deltaTime;
         }
+        print(camActive);
 
         //Rotation And Animation Walk
         if(moveDir.x != 0 || moveDir.z != 0) {
@@ -34,8 +36,19 @@ public class PlayController : MonoBehaviour
             isWalking = false;
         //Movements
 
-        moveDir = new Vector3(AxisX * moveSpeed,moveDir.y,AxisZ * moveSpeed);
+        switch(camActive){
+            case 1:
+                moveDir = new Vector3(-AxisZ * moveSpeed,moveDir.y,AxisX * moveSpeed);
+            break;
+            case 2:
+                moveDir = new Vector3(-AxisX * moveSpeed,moveDir.y,-AxisZ * moveSpeed);
+            break;
+            default:
+                moveDir = new Vector3(AxisX * moveSpeed,moveDir.y,AxisZ * moveSpeed);
+            break;
+        }
         cc.Move(moveDir * Time.deltaTime);
+
     }
     
     //Jump Function
@@ -45,10 +58,10 @@ public class PlayController : MonoBehaviour
         }
     }
     public void OnUpDownMoves(InputValue moves) {
-        AxisZ = moves.Get<float>();
-    }
-    
+            AxisZ = moves.Get<float>();
+      
+    }                                         
     public void OnSideMoves(InputValue moves) {
-        AxisX = moves.Get<float>();
+            AxisX = moves.Get<float>();
     }
 }
