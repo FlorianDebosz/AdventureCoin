@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class PlayerCollide : MonoBehaviour
 {
+    //Public
     public int nbCoin;
     public GameObject pickUpParticles;
     public GameObject snailsParticles;
     public GameObject mainCam,Camera1,Camera2;
-    private bool contact = false;
-
     public PlayController playController;
+    public AudioClip hitSound;
+    
+    //Private
     private Collider otherVarEnter, otherVarExit;
-
     private CharacterController cc;
+    private AudioSource audioSource;
+    private bool contact = false;
 
     private void Start(){
             playController = GetComponent<PlayController>();
             cc = GetComponent<CharacterController>();
+            audioSource = GetComponent<AudioSource>();
     }
     private void OnTriggerEnter(Collider other) {
         //Collider with coin
@@ -68,6 +72,7 @@ public class PlayerCollide : MonoBehaviour
             print("Aie !");
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
                 contact = true;
+                audioSource.PlayOneShot(hitSound);
                 GameObject snailsHit = Instantiate(snailsParticles, collision.transform.position, Quaternion.identity);
                 Destroy(snailsHit, 0.6f);
                 Destroy(collision.gameObject.transform.parent.gameObject,0.1f);

@@ -21,12 +21,10 @@ public class PlayController : MonoBehaviour
     }
     void Update() {
         isWalkingAnim.SetBool("IsWalking",isWalking);
-        print(camActive);
         //Gravity
         if(moveDir.y > -gravity) {
             moveDir.y -= gravity * Time.deltaTime;
         }
-        print(camActive);
 
         //Rotation And Animation Walk
         if(moveDir.x != 0 || moveDir.z != 0) {
