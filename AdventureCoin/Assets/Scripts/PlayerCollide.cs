@@ -13,9 +13,11 @@ public class PlayerCollide : MonoBehaviour
     public PlayController playController;
     private Collider otherVarEnter, otherVarExit;
 
+    private CharacterController cc;
 
     private void Start(){
             playController = GetComponent<PlayController>();
+            cc = GetComponent<CharacterController>();
     }
     private void OnTriggerEnter(Collider other) {
         //Collider with coin
@@ -64,7 +66,7 @@ public class PlayerCollide : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit collision) {
         if(collision.gameObject.tag == "SnailDamage"){
             print("Aie !");
-        }else if(collision.gameObject.tag == "SnailHurted" && !contact) {
+        }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
                 contact = true;
                 GameObject snailsHit = Instantiate(snailsParticles, collision.transform.position, Quaternion.identity);
                 Destroy(snailsHit, 0.6f);
