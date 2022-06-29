@@ -70,12 +70,15 @@ public class PlayerCollide : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit collision) {
         if(collision.gameObject.tag == "SnailDamage"){
             print("Aie !");
+            iTween.PunchPosition(gameObject,Vector3.back * 3,0.5f);
+            //iTween.PunchScale(gameObject,Vector3.back * 3,0.5f);
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
                 contact = true;
                 audioSource.PlayOneShot(hitSound);
+                iTween.PunchScale(collision.gameObject.transform.parent.gameObject,new Vector3(30,30,30),0.5f);
                 GameObject snailsHit = Instantiate(snailsParticles, collision.transform.position, Quaternion.identity);
-                Destroy(snailsHit, 0.6f);
-                Destroy(collision.gameObject.transform.parent.gameObject,0.1f);
+                Destroy(snailsHit, 0.7f);
+                Destroy(collision.gameObject.transform.parent.gameObject,0.6f);
                 StartCoroutine("ResetContact");
         }
     }
