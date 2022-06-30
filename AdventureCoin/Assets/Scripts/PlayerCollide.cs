@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerCollide : MonoBehaviour
 {
     //Public
-    public int nbCoin;
     public GameObject pickUpParticles;
     public GameObject snailsParticles;
     public GameObject mainCam,Camera1,Camera2;
@@ -31,7 +30,7 @@ public class PlayerCollide : MonoBehaviour
             GameObject coinParticles = Instantiate(pickUpParticles, other.transform.position, Quaternion.identity);
             Destroy(coinParticles, 0.5f);
             Destroy(other.gameObject);
-            nbCoin++;
+            PlayerInfos.playerInfos.GetCoins();
         }
 
         otherVarEnter = other;
@@ -71,7 +70,7 @@ public class PlayerCollide : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit collision) {
         if(collision.gameObject.tag == "SnailDamage" && !isInvincible){
-            print("Aie !");
+            PlayerInfos.playerInfos.SetHealth(-1);
             isInvincible = true;
             StartCoroutine("ResetInvincible");
             iTween.PunchPosition(gameObject,Vector3.back * 3,0.5f);
