@@ -9,6 +9,7 @@ public class PlayerInfos : MonoBehaviour
     public int playerHealth = 3;
     public int coinAmount = 0;
     public Image[] hearts;
+    public Text coinTxtAmount;
 
     private void Awake() {
         playerInfos = this;
@@ -26,6 +27,7 @@ public class PlayerInfos : MonoBehaviour
 
     public void GetCoins(){
         coinAmount ++;
+        coinTxtAmount.text = coinAmount.ToString(); //Converti et affiche le nombre de pièces
     }
 
     public void SetHealthBar(){
