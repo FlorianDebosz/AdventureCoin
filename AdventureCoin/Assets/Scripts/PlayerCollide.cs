@@ -11,12 +11,14 @@ public class PlayerCollide : MonoBehaviour
     public GameObject mainCam,Camera1,Camera2;
     public PlayController playController;
     public AudioClip hitSound;
+    public SkinnedMeshRenderer renderPlayer;
     
     //Private
     private Collider otherVarEnter, otherVarExit;
     private CharacterController cc;
     private AudioSource audioSource;
     private bool contact = false;
+    private bool isInvincible = false;
 
     private void Start(){
             playController = GetComponent<PlayController>();
@@ -68,10 +70,12 @@ public class PlayerCollide : MonoBehaviour
 
 
     private void OnControllerColliderHit(ControllerColliderHit collision) {
-        if(collision.gameObject.tag == "SnailDamage"){
+        if(collision.gameObject.tag == "SnailDamage" && !isInvincible){
             print("Aie !");
+            isInvincible = true;
+            StartCoroutine("ResetInvincible");
             iTween.PunchPosition(gameObject,Vector3.back * 3,0.5f);
-            //iTween.PunchScale(gameObject,Vector3.back * 3,0.5f);
+            iTween.PunchScale(gameObject,Vector3.back * 3,0.5f);
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
                 contact = true;
                 audioSource.PlayOneShot(hitSound);
@@ -86,5 +90,14 @@ public class PlayerCollide : MonoBehaviour
     IEnumerator ResetContact() {
         yield return new WaitForSeconds(0.8f);
         contact = false;
+    }
+    
+    IEnumerator ResetInvincible() {
+        for(int i = 0; i < 10; i++){
+            yield return new WaitForSeconds(0.2f);
+            renderPlayer.enabled = !renderPlayer.enabled;
+        }
+        yield return new WaitForSeconds(0.2f);
+        isInvincible = false;
     }
 }

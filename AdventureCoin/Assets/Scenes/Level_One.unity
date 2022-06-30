@@ -8707,6 +8707,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735376246}
   m_Mesh: {fileID: 2911736426955009642, guid: 760c294452155b24e801454dc828eefe, type: 3}
+--- !u!137 &1736803297 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8417361359673230750, guid: 6063b7c5f85313c4bb716ec9217b1a47,
+    type: 3}
+  m_PrefabInstance: {fileID: 1796679204}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1749398665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7441703858257899774, guid: 56ad98a162c13e34b99ddd08e9389cc0,
@@ -9066,6 +9072,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterPainEpice
       objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: 6063b7c5f85313c4bb716ec9217b1a47,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6063b7c5f85313c4bb716ec9217b1a47, type: 3}
 --- !u!1 &1796679205 stripped
@@ -9180,6 +9191,7 @@ MonoBehaviour:
   Camera2: {fileID: 1132847984}
   playController: {fileID: 1796679207}
   hitSound: {fileID: 8300000, guid: 003968236df0d504eb17d110e1fbbeba, type: 3}
+  renderPlayer: {fileID: 1736803297}
 --- !u!4 &1796679211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6063b7c5f85313c4bb716ec9217b1a47,
