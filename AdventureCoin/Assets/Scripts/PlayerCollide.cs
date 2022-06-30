@@ -33,6 +33,10 @@ public class PlayerCollide : MonoBehaviour
             PlayerInfos.playerInfos.GetCoins();
         }
 
+        if(other.gameObject.name == "EndZone"){
+            PlayerInfos.playerInfos.GetScore();
+        }
+
         otherVarEnter = other;
         Invoke("CamOnTriggerEnter",0.2f);
     }
@@ -73,7 +77,7 @@ public class PlayerCollide : MonoBehaviour
             PlayerInfos.playerInfos.SetHealth(-1);
             isInvincible = true;
             StartCoroutine("ResetInvincible");
-            iTween.PunchPosition(gameObject,Vector3.back * 3,0.5f);
+            iTween.PunchPosition(gameObject,Vector3.back * 5,0.5f);
             iTween.PunchScale(gameObject,Vector3.back * 3,0.5f);
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
                 contact = true;

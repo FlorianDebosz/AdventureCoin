@@ -9,7 +9,7 @@ public class PlayerInfos : MonoBehaviour
     public int playerHealth = 3;
     public int coinAmount = 0;
     public Image[] hearts;
-    public Text coinTxtAmount;
+    public Text coinTxtAmount,scoreTxt;
 
     private void Awake() {
         playerInfos = this;
@@ -42,8 +42,9 @@ public class PlayerInfos : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
+    public int GetScore(){
+        int scoreFinal = (coinAmount * 5) + (playerHealth * 10);
+        scoreTxt.text = "Score : " + scoreFinal;
+        return scoreFinal;
     }
 }
