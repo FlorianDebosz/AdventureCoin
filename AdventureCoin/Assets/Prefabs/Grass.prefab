@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6254053374170872227}
   - component: {fileID: 6254053374170872224}
   - component: {fileID: 4394018834850508350}
+  - component: {fileID: -1229158854439256426}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -94,5 +95,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newColorGrass: {r: 0.02745098, g: 0.3254902, b: 0.13333334, a: 0}
   timeColor: 3
-  timeScale: 5
-  amount: {x: 1, y: 1, z: 5}
+--- !u!114 &-1229158854439256426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6254053374170872225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df128f6283af0048a6772b28f4b0de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 0
+  amount: {x: 0, y: 0, z: 0}
