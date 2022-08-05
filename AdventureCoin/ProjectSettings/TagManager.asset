@@ -11,6 +11,7 @@ TagManager:
   - TopShell
   - Cam2
   - Cam3
+  - checkpoint
   layers:
   - Default
   - TransparentFX
