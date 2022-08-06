@@ -21,8 +21,10 @@ public class PlayerInfos : MonoBehaviour
         SetHealthBar();
         if(playerHealth > 3)
             playerHealth = 3;
-        if(playerHealth < 0)
+        if(playerHealth <= 0){
             playerHealth = 0;
+            CheckpointMgr.checkpointMgr.Respawn();
+        }
     }
 
     public void GetCoins(){
