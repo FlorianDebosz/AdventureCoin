@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollide : MonoBehaviour
 {
@@ -35,6 +36,12 @@ public class PlayerCollide : MonoBehaviour
 
         if(other.gameObject.name == "EndZone"){
             PlayerInfos.playerInfos.GetScore();
+        }
+
+        if(other.gameObject.tag == "water"){
+            //TODO : Ajouter une animation
+
+            StartCoroutine("WaterFallReset");
         }
 
         otherVarEnter = other;
@@ -87,6 +94,8 @@ public class PlayerCollide : MonoBehaviour
                 Destroy(snailsHit, 0.7f);
                 Destroy(collision.gameObject.transform.parent.gameObject,0.6f);
                 StartCoroutine("ResetContact");
+        }else if(collision.gameObject.tag == "void") {
+            SceneManager.LoadScene("Level_One");
         }
     }
         //Coroutine permettant d'attendre 0.8 secondes et de réactiver le contact
@@ -102,5 +111,10 @@ public class PlayerCollide : MonoBehaviour
         }
         yield return new WaitForSeconds(0.2f);
         isInvincible = false;
+    }
+
+    IEnumerator WaterFallReset() {
+        yield return new WaitForSeconds(0.8f);
+        SceneManager.LoadScene("Level_One");
     }
 }
