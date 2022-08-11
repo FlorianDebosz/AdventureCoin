@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfos : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class PlayerInfos : MonoBehaviour
             playerHealth = 3;
         if(playerHealth <= 0){
             playerHealth = 0;
-            CheckpointMgr.checkpointMgr.Respawn();
+            SceneManager.LoadScene("Level_One");
         }
     }
 

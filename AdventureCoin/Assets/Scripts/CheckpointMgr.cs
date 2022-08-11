@@ -20,8 +20,8 @@ public class CheckpointMgr : MonoBehaviour
         }
     }
 
-    public void Respawn() {
+    public void RespawnByHit() {
         transform.position = lastPoint;
-        PlayerInfos.playerInfos.SetHealth(3);
     }
+    
 }

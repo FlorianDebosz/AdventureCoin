@@ -40,8 +40,9 @@ public class PlayerCollide : MonoBehaviour
 
         if(other.gameObject.tag == "water"){
             //TODO : Ajouter une animation
-
+            // SceneManager.LoadScene("Level_One");
             StartCoroutine("WaterFallReset");
+            // CheckpointMgr.checkpointMgr.Respawn();
         }
 
         otherVarEnter = other;
@@ -83,9 +84,10 @@ public class PlayerCollide : MonoBehaviour
         if(collision.gameObject.tag == "SnailDamage" && !isInvincible){
             PlayerInfos.playerInfos.SetHealth(-1);
             isInvincible = true;
-            StartCoroutine("ResetInvincible");
             iTween.PunchPosition(gameObject,Vector3.back * 5,0.5f);
             iTween.PunchScale(gameObject,Vector3.back * 3,0.5f);
+            StartCoroutine("ResetInvincible");
+
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
                 contact = true;
                 audioSource.PlayOneShot(hitSound);

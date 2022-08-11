@@ -10213,7 +10213,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6063b7c5f85313c4bb716ec9217b1a47,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.48
+      value: -5.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6063b7c5f85313c4bb716ec9217b1a47,
         type: 3}
@@ -10370,8 +10370,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpParticles: {fileID: 8256456874746647499, guid: 28af23d07d4ff6a4da28a24309ba404d,
-    type: 3}
-  waterParticles: {fileID: 1687118924408352, guid: 77c69ec12208c4c4380d15e30b6f8f68,
     type: 3}
   snailsParticles: {fileID: 8256456874746647499, guid: eb3f59641e61fdc4298e17430c6bda64,
     type: 3}
@@ -17032,7 +17030,7 @@ Transform:
   m_GameObject: {fileID: 8416272007239297328}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0.02, y: 1.1310399, z: 2.13}
-  m_LocalScale: {x: 1475.8835, y: 3402.3467, z: 122.54202}
+  m_LocalScale: {x: 1475.8835, y: 3027.0337, z: 122.54202}
   m_Children: []
   m_Father: {fileID: 543450652230045502}
   m_RootOrder: 10
