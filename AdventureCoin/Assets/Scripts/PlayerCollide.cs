@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerCollide : MonoBehaviour
 {
@@ -40,9 +39,7 @@ public class PlayerCollide : MonoBehaviour
 
         if(other.gameObject.tag == "water"){
             //TODO : Ajouter une animation
-            // SceneManager.LoadScene("Level_One");
-            StartCoroutine("WaterFallReset");
-            // CheckpointMgr.checkpointMgr.Respawn();
+
         }
 
         otherVarEnter = other;
@@ -84,9 +81,11 @@ public class PlayerCollide : MonoBehaviour
         if(collision.gameObject.tag == "SnailDamage" && !isInvincible){
             PlayerInfos.playerInfos.SetHealth(-1);
             isInvincible = true;
-            iTween.PunchPosition(gameObject,Vector3.back * 5,0.5f);
-            iTween.PunchScale(gameObject,Vector3.back * 3,0.5f);
+            iTween.MoveAdd(gameObject,Vector3.back * 10, .5f); // Move Back Player
+            iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
+            //Change Color
             StartCoroutine("ResetInvincible");
+
 
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
                 contact = true;
@@ -97,7 +96,7 @@ public class PlayerCollide : MonoBehaviour
                 Destroy(collision.gameObject.transform.parent.gameObject,0.6f);
                 StartCoroutine("ResetContact");
         }else if(collision.gameObject.tag == "void") {
-            SceneManager.LoadScene("Level_One");
+            
         }
     }
         //Coroutine permettant d'attendre 0.8 secondes et de réactiver le contact
@@ -115,8 +114,7 @@ public class PlayerCollide : MonoBehaviour
         isInvincible = false;
     }
 
-    IEnumerator WaterFallReset() {
+    IEnumerator GetHitted() {
         yield return new WaitForSeconds(0.8f);
-        SceneManager.LoadScene("Level_One");
     }
 }

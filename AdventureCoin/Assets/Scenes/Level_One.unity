@@ -12674,7 +12674,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9075864894553388144}
   m_LocalRotation: {x: -0.67747873, y: -0.20254089, z: -0.20254101, w: 0.6774784}
-  m_LocalPosition: {x: 18.938496, y: 45.21, z: -22.95831}
+  m_LocalPosition: {x: 18.938496, y: 45.22, z: -22.95831}
   m_LocalScale: {x: 10.346302, y: 10.103885, z: 29.833805}
   m_Children: []
   m_Father: {fileID: 543450652230045502}
@@ -19273,6 +19273,7 @@ GameObject:
   - component: {fileID: 260510571724094120}
   - component: {fileID: 3625517091269577248}
   - component: {fileID: 1840340356608481596}
+  - component: {fileID: 9075864894553388145}
   m_Layer: 0
   m_Name: Poule
   m_TagString: Untagged
@@ -19280,6 +19281,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!64 &9075864894553388145
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9075864894553388144}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3265024957025939043, guid: 760c294452155b24e801454dc828eefe, type: 3}
 --- !u!33 &9155275839559987199
 MeshFilter:
   m_ObjectHideFlags: 0

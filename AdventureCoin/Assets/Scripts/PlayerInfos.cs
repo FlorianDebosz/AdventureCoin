@@ -24,7 +24,6 @@ public class PlayerInfos : MonoBehaviour
             playerHealth = 3;
         if(playerHealth <= 0){
             playerHealth = 0;
-            SceneManager.LoadScene("Level_One");
         }
     }
 
