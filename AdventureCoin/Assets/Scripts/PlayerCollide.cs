@@ -85,6 +85,7 @@ public class PlayerCollide : MonoBehaviour
             iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
             //Change Color
             StartCoroutine("ResetInvincible");
+            //Teleport
 
 
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {

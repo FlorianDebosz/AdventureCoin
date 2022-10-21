@@ -333,7 +333,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 18.874
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1229158854439256426, guid: 315a266ec85512741a6539d46a35ce46, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 315a266ec85512741a6539d46a35ce46, type: 3}
 --- !u!1001 &34346743
 PrefabInstance:
@@ -1714,6 +1715,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7441703858257899774, guid: 56ad98a162c13e34b99ddd08e9389cc0,
     type: 3}
   m_PrefabInstance: {fileID: 34346743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &218649806 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8417361359673230750, guid: 6063b7c5f85313c4bb716ec9217b1a47,
+    type: 3}
+  m_PrefabInstance: {fileID: 1796679204}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &219424625
 GameObject:
@@ -3449,7 +3456,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 28.493002
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1229158854439256426, guid: 315a266ec85512741a6539d46a35ce46, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 315a266ec85512741a6539d46a35ce46, type: 3}
 --- !u!4 &490029286 stripped
 Transform:
@@ -9821,12 +9829,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735376246}
   m_Mesh: {fileID: 2911736426955009642, guid: 760c294452155b24e801454dc828eefe, type: 3}
---- !u!137 &1736803297 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8417361359673230750, guid: 6063b7c5f85313c4bb716ec9217b1a47,
-    type: 3}
-  m_PrefabInstance: {fileID: 1796679204}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1749398665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7441703858257899774, guid: 56ad98a162c13e34b99ddd08e9389cc0,
@@ -10317,8 +10319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  jumpForce: 10
-  gravity: 15
+  jumpForce: 8
+  gravity: 9.81
   camActive: 0
 --- !u!143 &1796679208
 CharacterController:
@@ -10378,7 +10380,7 @@ MonoBehaviour:
   Camera2: {fileID: 1132847984}
   playController: {fileID: 1796679207}
   hitSound: {fileID: 8300000, guid: 003968236df0d504eb17d110e1fbbeba, type: 3}
-  renderPlayer: {fileID: 1736803297}
+  renderPlayer: {fileID: 218649806}
 --- !u!4 &1796679211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6063b7c5f85313c4bb716ec9217b1a47,
@@ -10481,18 +10483,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1796679213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1796679205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f513b7652ec588b4d968d3ea7cf31cb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1822026558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5436595532985455777, guid: a085345b0c08481438f94d45c2bd6fa3,

@@ -9,6 +9,7 @@ public class PlayController : MonoBehaviour
     public float moveSpeed,jumpForce,gravity;
     private Vector3 moveDir;
     private float AxisZ,AxisX;
+    public int PlayerHP { get; private set; }
     
     private Animator isWalkingAnim;
     private bool isWalking;
@@ -57,7 +58,6 @@ public class PlayController : MonoBehaviour
     }
     public void OnUpDownMoves(InputValue moves) {
             AxisZ = moves.Get<float>();
-      
     }                                         
     public void OnSideMoves(InputValue moves) {
             AxisX = moves.Get<float>();
