@@ -6,6 +6,7 @@ public class CheckpointMgr : MonoBehaviour
 {
     private Vector3 lastPoint;
     public static CheckpointMgr checkpointMgr;
+
     void Start()
     {
         lastPoint = transform.position;
@@ -21,7 +22,8 @@ public class CheckpointMgr : MonoBehaviour
     }
 
     public void RespawnByHit() {
-        transform.position = lastPoint;
+        //Need to Desactivate CharacterController
+        //Need to Reactivate CharacterController
     }
     
 }

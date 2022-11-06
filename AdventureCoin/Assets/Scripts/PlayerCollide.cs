@@ -5,24 +5,27 @@ using UnityEngine;
 public class PlayerCollide : MonoBehaviour
 {
     //Public
-    public GameObject pickUpParticles;
-    public GameObject snailsParticles;
-    public GameObject mainCam,Camera1,Camera2;
-    public PlayController playController;
-    public AudioClip hitSound;
-    public SkinnedMeshRenderer renderPlayer;
-    
+    public static PlayerCollide playerCollider;
+    public bool lockRotation = false;
+
     //Private
-    private Collider otherVarEnter, otherVarExit;
-    private CharacterController cc;
-    private AudioSource audioSource;
-    private bool contact = false;
-    private bool isInvincible = false;
+    [SerializeField] private GameObject pickUpParticles;
+    [SerializeField] private GameObject snailsParticles;
+    [SerializeField] private GameObject mainCam,Camera1,Camera2;
+    [SerializeField] private PlayController playController;
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private SkinnedMeshRenderer renderPlayer;
+
+    [SerializeField] private Collider otherVarEnter, otherVarExit;
+    [SerializeField] private CharacterController cc;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private bool contact = false;
+    [SerializeField] private bool isInvincible = false;
 
     private void Start(){
             playController = GetComponent<PlayController>();
-            cc = GetComponent<CharacterController>();
             audioSource = GetComponent<AudioSource>();
+            playerCollider = this;
     }
     private void OnTriggerEnter(Collider other) {
         //Collider with coin
@@ -81,11 +84,12 @@ public class PlayerCollide : MonoBehaviour
         if(collision.gameObject.tag == "SnailDamage" && !isInvincible){
             PlayerInfos.playerInfos.SetHealth(-1);
             isInvincible = true;
-            iTween.MoveAdd(gameObject,Vector3.back * 10, .5f); // Move Back Player
+            cc.enabled = false; //Disable Control
+            lockRotation = true; //Disable Rotation
+            iTween.MoveAdd(gameObject,Vector3.back * 2, .5f); // Move Back Player
             iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
             //Change Color
             StartCoroutine("ResetInvincible");
-            //Teleport
 
 
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
@@ -113,9 +117,5 @@ public class PlayerCollide : MonoBehaviour
         }
         yield return new WaitForSeconds(0.2f);
         isInvincible = false;
-    }
-
-    IEnumerator GetHitted() {
-        yield return new WaitForSeconds(0.8f);
     }
 }

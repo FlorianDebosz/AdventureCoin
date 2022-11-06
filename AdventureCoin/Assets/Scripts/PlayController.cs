@@ -28,7 +28,7 @@ public class PlayController : MonoBehaviour
         }
 
         //Rotation And Animation Walk
-        if(moveDir.x != 0 || moveDir.z != 0) {
+        if(moveDir.x != 0 && PlayerCollide.playerCollider.lockRotation == false || moveDir.z != 0 && PlayerCollide.playerCollider.lockRotation == false) {
             isWalking = true;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(moveDir.x, 0 ,moveDir.z)), 0.15f);
         } else

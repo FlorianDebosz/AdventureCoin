@@ -10381,6 +10381,7 @@ MonoBehaviour:
   playController: {fileID: 1796679207}
   hitSound: {fileID: 8300000, guid: 003968236df0d504eb17d110e1fbbeba, type: 3}
   renderPlayer: {fileID: 218649806}
+  cc: {fileID: 1796679208}
 --- !u!4 &1796679211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6063b7c5f85313c4bb716ec9217b1a47,
