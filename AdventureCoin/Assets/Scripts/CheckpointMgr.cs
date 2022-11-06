@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckpointMgr : MonoBehaviour
 {
-    private Vector3 lastPoint;
+    [SerializeField]private Vector3 lastPoint;
     public static CheckpointMgr checkpointMgr;
 
     void Start()
@@ -21,9 +21,8 @@ public class CheckpointMgr : MonoBehaviour
         }
     }
 
-    public void RespawnByHit() {
-        //Need to Desactivate CharacterController
-        //Need to Reactivate CharacterController
+    public IEnumerator RespawnByHit() {
+        yield return new WaitForSeconds(1.9f);
+        transform.position = lastPoint;
     }
-    
 }

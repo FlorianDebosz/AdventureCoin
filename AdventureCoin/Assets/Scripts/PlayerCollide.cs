@@ -84,12 +84,19 @@ public class PlayerCollide : MonoBehaviour
         if(collision.gameObject.tag == "SnailDamage" && !isInvincible){
             PlayerInfos.playerInfos.SetHealth(-1);
             isInvincible = true;
-            cc.enabled = false; //Disable Control
-            lockRotation = true; //Disable Rotation
+            StartCoroutine("EnableControls"); //Disable Controls
+
+            //Animation
             iTween.MoveAdd(gameObject,Vector3.back * 2, .5f); // Move Back Player
             iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
-            //Change Color
+            //TODO: Change Color
+
             StartCoroutine("ResetInvincible");
+            //Teleport
+            StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit());
+            StartCoroutine("EnableControls"); //Enable Controls
+
+
 
 
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
@@ -117,5 +124,17 @@ public class PlayerCollide : MonoBehaviour
         }
         yield return new WaitForSeconds(0.2f);
         isInvincible = false;
+    }
+
+    IEnumerator EnableControls() {
+        if (cc.enabled == true && lockRotation == false){
+            cc.enabled = !cc.enabled;
+            lockRotation = !lockRotation;
+        }else if(cc.enabled == false && lockRotation == true){
+            yield return new WaitForSeconds(1.9f);
+            cc.enabled = !cc.enabled;
+            lockRotation = !lockRotation;
+        }
+        yield return new WaitForSeconds(0f);
     }
 }
