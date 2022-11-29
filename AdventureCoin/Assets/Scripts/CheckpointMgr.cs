@@ -9,7 +9,7 @@ public class CheckpointMgr : MonoBehaviour
 
     void Start()
     {
-        lastPoint = transform.position;
+        lastPoint = PlayerCollide.playerCollider.GetCcPosition();
         checkpointMgr = this;
     }
 
@@ -21,8 +21,8 @@ public class CheckpointMgr : MonoBehaviour
         }
     }
 
-    public IEnumerator RespawnByHit() {
+    public IEnumerator RespawnByHit(CharacterController cc) {
         yield return new WaitForSeconds(1.9f);
-        transform.position = lastPoint;
+        cc.transform.position = lastPoint;
     }
 }

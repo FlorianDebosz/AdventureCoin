@@ -22,7 +22,7 @@ public class PlayerCollide : MonoBehaviour
     [SerializeField] private bool contact = false;
     [SerializeField] private bool isInvincible = false;
 
-    private void Start(){
+    private void Awake(){
             playController = GetComponent<PlayController>();
             audioSource = GetComponent<AudioSource>();
             playerCollider = this;
@@ -83,21 +83,19 @@ public class PlayerCollide : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit collision) {
         if(collision.gameObject.tag == "SnailDamage" && !isInvincible){
             PlayerInfos.playerInfos.SetHealth(-1);
-            isInvincible = true;
-            StartCoroutine("EnableControls"); //Disable Controls
+                isInvincible = true;
+                
+                StartCoroutine("ResetInvincible");
+                StartCoroutine("EnableControls"); //Disable Controls
 
-            //Animation
-            iTween.MoveAdd(gameObject,Vector3.back * 2, .5f); // Move Back Player
-            iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
-            //TODO: Change Color
+                //Animation
+                iTween.MoveAdd(gameObject,Vector3.back * 2, .5f); // Move Back Player
+                iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
+                //TODO: Change Color
 
-            StartCoroutine("ResetInvincible");
-            //Teleport
-            StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit());
-            StartCoroutine("EnableControls"); //Enable Controls
-
-
-
+                //Teleport
+                StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit(cc));
+                StartCoroutine("EnableControls"); //Enable Controls
 
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
                 contact = true;
@@ -136,5 +134,10 @@ public class PlayerCollide : MonoBehaviour
             lockRotation = !lockRotation;
         }
         yield return new WaitForSeconds(0f);
+    }
+
+    //Getter CharacterController
+    public Vector3 GetCcPosition() {
+        return cc.transform.position;
     }
 }
