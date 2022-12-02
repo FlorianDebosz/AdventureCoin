@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollide : MonoBehaviour
 {
@@ -82,7 +83,8 @@ public class PlayerCollide : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit collision) {
         if(collision.gameObject.tag == "SnailDamage" && !isInvincible){
-            PlayerInfos.playerInfos.SetHealth(-1);
+            if(PlayerInfos.playerInfos.playerHealth > 1) {
+                PlayerInfos.playerInfos.SetHealth(-1);
                 isInvincible = true;
                 
                 StartCoroutine("ResetInvincible");
@@ -96,6 +98,10 @@ public class PlayerCollide : MonoBehaviour
                 //Teleport
                 StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit(cc));
                 StartCoroutine("EnableControls"); //Enable Controls
+            }else{
+                PlayerInfos.playerInfos.SetHealth(-1);
+                SceneManager.LoadScene("Level_One");
+            }
 
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
                 contact = true;
