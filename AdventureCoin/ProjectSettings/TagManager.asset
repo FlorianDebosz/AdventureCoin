@@ -12,6 +12,8 @@ TagManager:
   - Cam2
   - Cam3
   - checkpoint
+  - void
+  - water
   layers:
   - Default
   - TransparentFX

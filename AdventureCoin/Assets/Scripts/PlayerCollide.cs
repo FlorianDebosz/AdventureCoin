@@ -1,28 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollide : MonoBehaviour
 {
     //Public
-    public GameObject pickUpParticles;
-    public GameObject snailsParticles;
-    public GameObject mainCam,Camera1,Camera2;
-    public PlayController playController;
-    public AudioClip hitSound;
-    public SkinnedMeshRenderer renderPlayer;
-    
-    //Private
-    private Collider otherVarEnter, otherVarExit;
-    private CharacterController cc;
-    private AudioSource audioSource;
-    private bool contact = false;
-    private bool isInvincible = false;
+    public static PlayerCollide playerCollider;
+    public bool lockRotation = false;
 
-    private void Start(){
+    //Private
+    [SerializeField] private GameObject pickUpParticles;
+    [SerializeField] private GameObject snailsParticles;
+    [SerializeField] private GameObject mainCam,Camera1,Camera2;
+    [SerializeField] private PlayController playController;
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private SkinnedMeshRenderer renderPlayer;
+
+    [SerializeField] private Collider otherVarEnter, otherVarExit;
+    [SerializeField] private CharacterController cc;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private bool contact = false;
+    [SerializeField] private bool isInvincible = false;
+
+    private void Awake(){
             playController = GetComponent<PlayController>();
-            cc = GetComponent<CharacterController>();
             audioSource = GetComponent<AudioSource>();
+            playerCollider = this;
     }
     private void OnTriggerEnter(Collider other) {
         //Collider with coin
@@ -35,6 +39,11 @@ public class PlayerCollide : MonoBehaviour
 
         if(other.gameObject.name == "EndZone"){
             PlayerInfos.playerInfos.GetScore();
+        }
+
+        if(other.gameObject.tag == "water"){
+            //TODO : Ajouter une animation
+
         }
 
         otherVarEnter = other;
@@ -74,11 +83,26 @@ public class PlayerCollide : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit collision) {
         if(collision.gameObject.tag == "SnailDamage" && !isInvincible){
-            PlayerInfos.playerInfos.SetHealth(-1);
-            isInvincible = true;
-            StartCoroutine("ResetInvincible");
-            iTween.PunchPosition(gameObject,Vector3.back * 5,0.5f);
-            iTween.PunchScale(gameObject,Vector3.back * 3,0.5f);
+            if(PlayerInfos.playerInfos.playerHealth > 1) {
+                PlayerInfos.playerInfos.SetHealth(-1);
+                isInvincible = true;
+                
+                StartCoroutine("ResetInvincible");
+                StartCoroutine("EnableControls"); //Disable Controls
+
+                //Animation
+                iTween.MoveAdd(gameObject,Vector3.back * 2, .5f); // Move Back Player
+                iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
+                //TODO: Change Color
+
+                //Teleport
+                StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit(cc));
+                StartCoroutine("EnableControls"); //Enable Controls
+            }else{
+                PlayerInfos.playerInfos.SetHealth(-1);
+                SceneManager.LoadScene("Level_One");
+            }
+
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
                 contact = true;
                 audioSource.PlayOneShot(hitSound);
@@ -87,6 +111,8 @@ public class PlayerCollide : MonoBehaviour
                 Destroy(snailsHit, 0.7f);
                 Destroy(collision.gameObject.transform.parent.gameObject,0.6f);
                 StartCoroutine("ResetContact");
+        }else if(collision.gameObject.tag == "void") {
+            
         }
     }
         //Coroutine permettant d'attendre 0.8 secondes et de réactiver le contact
@@ -102,5 +128,22 @@ public class PlayerCollide : MonoBehaviour
         }
         yield return new WaitForSeconds(0.2f);
         isInvincible = false;
+    }
+
+    IEnumerator EnableControls() {
+        if (cc.enabled == true && lockRotation == false){
+            cc.enabled = !cc.enabled;
+            lockRotation = !lockRotation;
+        }else if(cc.enabled == false && lockRotation == true){
+            yield return new WaitForSeconds(1.9f);
+            cc.enabled = !cc.enabled;
+            lockRotation = !lockRotation;
+        }
+        yield return new WaitForSeconds(0f);
+    }
+
+    //Getter CharacterController
+    public Vector3 GetCcPosition() {
+        return cc.transform.position;
     }
 }

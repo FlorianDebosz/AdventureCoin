@@ -9,6 +9,7 @@ public class PlayController : MonoBehaviour
     public float moveSpeed,jumpForce,gravity;
     private Vector3 moveDir;
     private float AxisZ,AxisX;
+    public int PlayerHP { get; private set; }
     
     private Animator isWalkingAnim;
     private bool isWalking;
@@ -27,7 +28,7 @@ public class PlayController : MonoBehaviour
         }
 
         //Rotation And Animation Walk
-        if(moveDir.x != 0 || moveDir.z != 0) {
+        if(moveDir.x != 0 && PlayerCollide.playerCollider.lockRotation == false || moveDir.z != 0 && PlayerCollide.playerCollider.lockRotation == false) {
             isWalking = true;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(moveDir.x, 0 ,moveDir.z)), 0.15f);
         } else
@@ -57,7 +58,6 @@ public class PlayController : MonoBehaviour
     }
     public void OnUpDownMoves(InputValue moves) {
             AxisZ = moves.Get<float>();
-      
     }                                         
     public void OnSideMoves(InputValue moves) {
             AxisX = moves.Get<float>();

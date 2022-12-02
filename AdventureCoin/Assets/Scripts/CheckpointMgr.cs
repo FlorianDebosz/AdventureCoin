@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CheckpointMgr : MonoBehaviour
 {
-    private Vector3 lastPoint;
+    [SerializeField]private Vector3 lastPoint;
     public static CheckpointMgr checkpointMgr;
+
     void Start()
     {
-        lastPoint = transform.position;
+        lastPoint = PlayerCollide.playerCollider.GetCcPosition();
         checkpointMgr = this;
     }
 
@@ -20,8 +21,8 @@ public class CheckpointMgr : MonoBehaviour
         }
     }
 
-    public void Respawn() {
-        transform.position = lastPoint;
-        PlayerInfos.playerInfos.SetHealth(3);
+    public IEnumerator RespawnByHit(CharacterController cc) {
+        yield return new WaitForSeconds(1.9f);
+        cc.transform.position = lastPoint;
     }
 }
