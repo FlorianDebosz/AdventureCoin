@@ -43,7 +43,7 @@ public class PlayerCollide : MonoBehaviour
 
         if(other.gameObject.tag == "water"){
             //TODO : Ajouter une animation
-
+            SceneManager.LoadScene("Level_One");
         }
 
         otherVarEnter = other;
@@ -99,7 +99,6 @@ public class PlayerCollide : MonoBehaviour
                 StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit(cc));
                 StartCoroutine("EnableControls"); //Enable Controls
             }else{
-                PlayerInfos.playerInfos.SetHealth(-1);
                 SceneManager.LoadScene("Level_One");
             }
 
@@ -112,7 +111,7 @@ public class PlayerCollide : MonoBehaviour
                 Destroy(collision.gameObject.transform.parent.gameObject,0.6f);
                 StartCoroutine("ResetContact");
         }else if(collision.gameObject.tag == "void") {
-            
+            SceneManager.LoadScene("Level_One");
         }
     }
         //Coroutine permettant d'attendre 0.8 secondes et de réactiver le contact
