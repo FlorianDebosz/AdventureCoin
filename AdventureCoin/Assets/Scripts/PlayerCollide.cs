@@ -28,8 +28,13 @@ public class PlayerCollide : MonoBehaviour
             audioSource = GetComponent<AudioSource>();
             playerCollider = this;
     }
+    
     private void OnTriggerEnter(Collider other) {
         //Collider with coin
+        otherVarEnter = other;
+        if(otherVarEnter.gameObject.tag == "Cam1" || otherVarEnter.gameObject.tag == "Cam2")
+            Invoke("CamOnTriggerEnter",0.2f);
+        
         if(other.gameObject.tag == "Coin"){
             GameObject coinParticles = Instantiate(pickUpParticles, other.transform.position, Quaternion.identity);
             Destroy(coinParticles, 0.5f);
@@ -37,17 +42,13 @@ public class PlayerCollide : MonoBehaviour
             PlayerInfos.playerInfos.GetCoins();
         }
 
-        if(other.gameObject.name == "EndZone"){
+        if(other.gameObject.name == "EndZone")
             PlayerInfos.playerInfos.GetScore();
-        }
 
         if(other.gameObject.tag == "water"){
             //TODO : Ajouter une animation
-
+            SceneManager.LoadScene("Level_One");
         }
-
-        otherVarEnter = other;
-        Invoke("CamOnTriggerEnter",0.2f);
     }
 
     private void CamOnTriggerEnter(){   
@@ -93,13 +94,13 @@ public class PlayerCollide : MonoBehaviour
                 //Animation
                 iTween.MoveAdd(gameObject,Vector3.back * 2, .5f); // Move Back Player
                 iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
+                
                 //TODO: Change Color
 
                 //Teleport
                 StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit(cc));
                 StartCoroutine("EnableControls"); //Enable Controls
             }else{
-                PlayerInfos.playerInfos.SetHealth(-1);
                 SceneManager.LoadScene("Level_One");
             }
 
@@ -112,7 +113,7 @@ public class PlayerCollide : MonoBehaviour
                 Destroy(collision.gameObject.transform.parent.gameObject,0.6f);
                 StartCoroutine("ResetContact");
         }else if(collision.gameObject.tag == "void") {
-            
+            SceneManager.LoadScene("Level_One");
         }
     }
         //Coroutine permettant d'attendre 0.8 secondes et de réactiver le contact
