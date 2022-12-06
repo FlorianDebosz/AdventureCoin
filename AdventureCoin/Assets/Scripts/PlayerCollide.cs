@@ -16,6 +16,7 @@ public class PlayerCollide : MonoBehaviour
     [SerializeField] private PlayController playController;
     [SerializeField] private AudioClip hitSound;
     [SerializeField] private AudioClip coinCollectSound;
+    [SerializeField] private AudioClip splashSound;
     [SerializeField] private SkinnedMeshRenderer renderPlayer;
 
     [SerializeField] private Collider otherVarEnter, otherVarExit;
@@ -49,7 +50,11 @@ public class PlayerCollide : MonoBehaviour
 
         if(other.gameObject.tag == "water"){
             //TODO : Ajouter une animation
-            SceneManager.LoadScene("Level_One");
+            StartCoroutine("EnableControls"); //Desactivate Controls
+            audioSource.PlayOneShot(splashSound);
+            StartCoroutine("Restart");
+            
+            
         }
     }
 
@@ -158,5 +163,14 @@ public class PlayerCollide : MonoBehaviour
     IEnumerator DesactivateColorHit() {
         yield return new WaitForSeconds(2f);
         iTween.StopByName("colorHit");
+    }
+    IEnumerator SplashSoundCoroutines() {
+        yield return new WaitForSeconds(100f);
+       
+    }
+
+        IEnumerator Restart() {
+        yield return new WaitForSeconds(1.2f);
+        SceneManager.LoadScene("Level_One");
     }
 }
