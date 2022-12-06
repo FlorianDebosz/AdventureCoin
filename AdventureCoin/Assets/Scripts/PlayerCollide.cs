@@ -94,13 +94,12 @@ public class PlayerCollide : MonoBehaviour
                 //Animation
                 iTween.MoveAdd(gameObject,Vector3.back * 2, .5f); // Move Back Player
                 iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
-                
-                //TODO: Change Color
                 iTween.ColorTo(gameObject, iTween.Hash(
-                    "r", 255,
-                    "a", 0,
-                    "time", 6f,
-                    "LoopType", "pingPong"
+                    "name", "colorHit",
+                    "r", 5,
+                    "time", 0.5f,
+                    "LoopType", "pingPong",
+                    "onstart", "DesactivateColorHit"
                 ));
 
                 //Teleport
@@ -152,5 +151,10 @@ public class PlayerCollide : MonoBehaviour
     //Getter CharacterController
     public Vector3 GetCcPosition() {
         return cc.transform.position;
+    }
+
+    IEnumerator DesactivateColorHit() {
+        yield return new WaitForSeconds(2f);
+        iTween.StopByName("colorHit");
     }
 }
