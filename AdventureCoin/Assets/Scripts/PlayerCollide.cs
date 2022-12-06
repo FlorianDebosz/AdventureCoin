@@ -96,6 +96,12 @@ public class PlayerCollide : MonoBehaviour
                 iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
                 
                 //TODO: Change Color
+                iTween.ColorTo(gameObject, iTween.Hash(
+                    "r", 255,
+                    "a", 0,
+                    "time", 6f,
+                    "LoopType", "pingPong"
+                ));
 
                 //Teleport
                 StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit(cc));
