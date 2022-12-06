@@ -15,6 +15,7 @@ public class PlayerCollide : MonoBehaviour
     [SerializeField] private GameObject mainCam,Camera1,Camera2;
     [SerializeField] private PlayController playController;
     [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip coinCollectSound;
     [SerializeField] private SkinnedMeshRenderer renderPlayer;
 
     [SerializeField] private Collider otherVarEnter, otherVarExit;
@@ -37,6 +38,7 @@ public class PlayerCollide : MonoBehaviour
         
         if(other.gameObject.tag == "Coin"){
             GameObject coinParticles = Instantiate(pickUpParticles, other.transform.position, Quaternion.identity);
+            audioSource.PlayOneShot(coinCollectSound);
             Destroy(coinParticles, 0.5f);
             Destroy(other.gameObject);
             PlayerInfos.playerInfos.GetCoins();
@@ -148,7 +150,7 @@ public class PlayerCollide : MonoBehaviour
         yield return new WaitForSeconds(0f);
     }
 
-    //Getter CharacterController
+    //Getter CharacterController Position
     public Vector3 GetCcPosition() {
         return cc.transform.position;
     }
