@@ -14,13 +14,13 @@ public class PlayerCollide : MonoBehaviour
     [SerializeField] private GameObject snailsParticles;
     [SerializeField] private GameObject mainCam,Camera1,Camera2;
     [SerializeField] private PlayController playController;
-    [SerializeField] private AudioClip hitSound,coinCollectSound,splashSound,victorySound;
+    [SerializeField] private AudioClip hitSound,coinCollectSound,splashSound,victorySound,gameoverSound;
     [SerializeField] private SkinnedMeshRenderer renderPlayer;
 
     [SerializeField] private Collider otherVarEnter, otherVarExit;
     [SerializeField] private CharacterController cc;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private bool contact = false;
+    [SerializeField] private bool contact = false, contactSound = false;
     [SerializeField] private bool isInvincible = false;
 
     private void Awake(){
@@ -46,6 +46,11 @@ public class PlayerCollide : MonoBehaviour
         if(other.gameObject.name == "EndZone"){
             PlayerInfos.playerInfos.GetScore();
             audioSource.PlayOneShot(victorySound);
+        }
+        
+        if(other.gameObject.tag == "void") {
+            audioSource.PlayOneShot(gameoverSound);
+            StartCoroutine("Restart");
         }
 
 
@@ -102,19 +107,20 @@ public class PlayerCollide : MonoBehaviour
                 //Animation
                 iTween.MoveAdd(gameObject,Vector3.back * 2, .5f); // Move Back Player
                 iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
-                iTween.ColorTo(gameObject, iTween.Hash(
-                    "name", "colorHit",
-                    "r", 5,
-                    "time", 0.5f,
-                    "LoopType", "pingPong",
-                    "onstart", "DesactivateColorHit"
-                ));
 
                 //Teleport
                 StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit(cc));
                 StartCoroutine("EnableControls"); //Enable Controls
             }else{
-                SceneManager.LoadScene("Level_One");
+                if(!contactSound){
+                    StartCoroutine("ResetInvincible");
+                    StartCoroutine("EnableControls"); //Disable Controls
+                    iTween.MoveAdd(gameObject,Vector3.back * 2, .5f); // Move Back Player
+                    iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
+                    contactSound = true;
+                    audioSource.PlayOneShot(gameoverSound);
+                }
+                StartCoroutine("Restart");
             }
 
         }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
@@ -125,8 +131,6 @@ public class PlayerCollide : MonoBehaviour
                 Destroy(snailsHit, 0.7f);
                 Destroy(collision.gameObject.transform.parent.gameObject,0.6f);
                 StartCoroutine("ResetContact");
-        }else if(collision.gameObject.tag == "void") {
-            SceneManager.LoadScene("Level_One");
         }
     }
         //Coroutine permettant d'attendre 0.8 secondes et de réactiver le contact
@@ -162,14 +166,9 @@ public class PlayerCollide : MonoBehaviour
     }
 
     IEnumerator DesactivateColorHit() {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.1f);
         iTween.StopByName("colorHit");
     }
-    IEnumerator SplashSoundCoroutines() {
-        yield return new WaitForSeconds(100f);
-       
-    }
-
         IEnumerator Restart() {
         yield return new WaitForSeconds(1.2f);
         SceneManager.LoadScene("Level_One");
