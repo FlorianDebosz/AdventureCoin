@@ -29,7 +29,7 @@ public class PlayerInfos : MonoBehaviour
 
     public void GetCoins(){
         coinAmount ++;
-        coinTxtAmount.text = coinAmount.ToString(); //Converti et affiche le nombre de pièces
+        coinTxtAmount.text = coinAmount.ToString(); //Convertis et affiche le nombre de pièces
     }
 
     public void SetHealthBar(){

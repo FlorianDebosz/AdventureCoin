@@ -3,17 +3,22 @@ using UnityEngine.InputSystem;
 
 public class PlayController : MonoBehaviour
 {
-    
+    //private
     private CharacterController cc;
-    //Control
-    public float moveSpeed,jumpForce,gravity;
+    [SerializeField] private float moveSpeed,jumpForce,gravity;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip jumpSound;
     private Vector3 moveDir;
     private float AxisZ,AxisX;
-    public int PlayerHP { get; private set; }
-    
     private Animator isWalkingAnim;
     private bool isWalking;
+
+
+    //public
+    public int PlayerHP { get; private set; }
     public int camActive;
+
+
 
     void Start() {
         cc = GetComponent<CharacterController>();
@@ -54,6 +59,7 @@ public class PlayController : MonoBehaviour
     public void OnJump() {
         if(cc.isGrounded) {
             moveDir.y = jumpForce;
+            audioSource.PlayOneShot(jumpSound);
         }
     }
     public void OnUpDownMoves(InputValue moves) {
