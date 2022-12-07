@@ -9678,6 +9678,8 @@ MonoBehaviour:
   moveSpeed: 7
   jumpForce: 10.5
   gravity: 20
+  audioSource: {fileID: 1796679212}
+  jumpSound: {fileID: 8300000, guid: ac1f552721265694091be1464ce3c413, type: 3}
   camActive: 0
 --- !u!143 &1796679208
 CharacterController:
@@ -9739,6 +9741,7 @@ MonoBehaviour:
   playController: {fileID: 1796679207}
   hitSound: {fileID: 8300000, guid: 003968236df0d504eb17d110e1fbbeba, type: 3}
   coinCollectSound: {fileID: 8300000, guid: d6bf2fba7b9ed644ea835f6b3ab948a7, type: 3}
+  splashSound: {fileID: 8300000, guid: a3d41a3a34b735a4caed3fd020491b8d, type: 3}
   renderPlayer: {fileID: 218649806}
   otherVarEnter: {fileID: 0}
   otherVarExit: {fileID: 0}

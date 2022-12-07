@@ -14,9 +14,7 @@ public class PlayerCollide : MonoBehaviour
     [SerializeField] private GameObject snailsParticles;
     [SerializeField] private GameObject mainCam,Camera1,Camera2;
     [SerializeField] private PlayController playController;
-    [SerializeField] private AudioClip hitSound;
-    [SerializeField] private AudioClip coinCollectSound;
-    [SerializeField] private AudioClip splashSound;
+    [SerializeField] private AudioClip hitSound,coinCollectSound,splashSound;
     [SerializeField] private SkinnedMeshRenderer renderPlayer;
 
     [SerializeField] private Collider otherVarEnter, otherVarExit;
