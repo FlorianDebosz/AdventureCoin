@@ -14,7 +14,7 @@ public class PlayerCollide : MonoBehaviour
     [SerializeField] private GameObject snailsParticles;
     [SerializeField] private GameObject mainCam,Camera1,Camera2;
     [SerializeField] private PlayController playController;
-    [SerializeField] private AudioClip hitSound,coinCollectSound,splashSound;
+    [SerializeField] private AudioClip hitSound,coinCollectSound,splashSound,victorySound;
     [SerializeField] private SkinnedMeshRenderer renderPlayer;
 
     [SerializeField] private Collider otherVarEnter, otherVarExit;
@@ -43,8 +43,11 @@ public class PlayerCollide : MonoBehaviour
             PlayerInfos.playerInfos.GetCoins();
         }
 
-        if(other.gameObject.name == "EndZone")
+        if(other.gameObject.name == "EndZone"){
             PlayerInfos.playerInfos.GetScore();
+            audioSource.PlayOneShot(victorySound);
+        }
+
 
         if(other.gameObject.tag == "water"){
             //TODO : Ajouter une animation
