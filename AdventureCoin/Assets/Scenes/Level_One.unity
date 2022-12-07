@@ -9743,13 +9743,15 @@ MonoBehaviour:
   coinCollectSound: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
   splashSound: {fileID: 8300000, guid: a3d41a3a34b735a4caed3fd020491b8d, type: 3}
   victorySound: {fileID: 8300000, guid: 2667a0a008b044e218b63df62e2be749, type: 3}
-  gameoverSound: {fileID: 0}
+  gameoverSound: {fileID: 8300000, guid: 01c9e0aa14233b44f8df0335cf133abf, type: 3}
+  hurtedSound: {fileID: 0}
   renderPlayer: {fileID: 218649806}
   otherVarEnter: {fileID: 0}
   otherVarExit: {fileID: 0}
   cc: {fileID: 1796679208}
   audioSource: {fileID: 1796679212}
   contact: 0
+  contactSound: 0
   isInvincible: 0
 --- !u!4 &1796679211 stripped
 Transform:

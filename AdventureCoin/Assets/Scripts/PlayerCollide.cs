@@ -14,7 +14,7 @@ public class PlayerCollide : MonoBehaviour
     [SerializeField] private GameObject snailsParticles;
     [SerializeField] private GameObject mainCam,Camera1,Camera2;
     [SerializeField] private PlayController playController;
-    [SerializeField] private AudioClip hitSound,coinCollectSound,splashSound,victorySound,gameoverSound;
+    [SerializeField] private AudioClip hitSound,coinCollectSound,splashSound,victorySound,gameoverSound,hurtedSound;
     [SerializeField] private SkinnedMeshRenderer renderPlayer;
 
     [SerializeField] private Collider otherVarEnter, otherVarExit;
@@ -107,6 +107,9 @@ public class PlayerCollide : MonoBehaviour
                 //Animation
                 iTween.MoveAdd(gameObject,Vector3.back * 2, .5f); // Move Back Player
                 iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
+
+                //Sound
+                audioSource.PlayOneShot(hurtedSound);
 
                 //Teleport
                 StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit(cc));
