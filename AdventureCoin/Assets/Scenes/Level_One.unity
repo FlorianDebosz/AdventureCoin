@@ -9883,6 +9883,7 @@ MonoBehaviour:
   audioSource: {fileID: 1796679212}
   sound: {fileID: 8300000, guid: 9823e432de18fbb4880371978aab11d6, type: 3}
   secondSound: {fileID: 8300000, guid: 9b133ad6ed982d54f811ece639b449a6, type: 3}
+  playedSong: 1
 --- !u!4 &1822026558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5436595532985455777, guid: a085345b0c08481438f94d45c2bd6fa3,
