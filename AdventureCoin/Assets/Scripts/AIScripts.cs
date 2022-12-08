@@ -28,6 +28,15 @@ public class AIScripts : MonoBehaviour
     private void Update() {
         Walk();
         SearchPlayer();
+        SetMobSize();
+    }
+
+    private void SetMobSize(){
+        if(Vector3.Distance(transform.position, player.position) <= distanceDectect + 1.2){
+            iTween.ScaleTo(gameObject,Vector3.one, 0.7f);
+        }else{
+            iTween.ScaleTo(gameObject,new Vector3(0.2f,0.2f,0.2f), 0.7f);
+        }
     }
 
     //Search player
