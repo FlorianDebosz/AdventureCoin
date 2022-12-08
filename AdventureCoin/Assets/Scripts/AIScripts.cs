@@ -10,23 +10,44 @@ public class AIScripts : MonoBehaviour
     [SerializeField] private float distanceDectect = 3f;
     [SerializeField] private Transform[] points;
     private int destinationIndex = 0;
-    NavMeshAgent agent;
+    private NavMeshAgent agent;
+    private Transform player;
+    private float speedMax, speedMin;
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         if(agent != null){
-            agent.destination = points[destinationIndex].position;
+            destinationIndex = Random.Range(0,points.Length);
         }
+        speedMax = agent.speed + 0.5f;
+        speedMin = agent.speed;
     }
 
     private void Update() {
+        Walk();
+        SearchPlayer();
+    }
+
+    //Search player
+    private void SearchPlayer(){
+        float distanceFromPlayer = Vector3.Distance(transform.position,player.position);
+        if (distanceFromPlayer <= distanceDectect){
+            //Player Detected
+            agent.destination = player.position;
+            agent.speed = speedMax;
+        }else {
+            agent.destination = points[destinationIndex].position;
+            agent.speed = speedMin;
+        }
+    }
+
+    //Walk Function
+    private void Walk(){
         float dist = agent.remainingDistance;
         if(dist <= 0.05f){
-            destinationIndex++;
-            if(destinationIndex > points.Length-1){
-                destinationIndex = 0;
-            }
+            destinationIndex = Random.Range(0,points.Length);
         }
         agent.destination = points[destinationIndex].position;
     }
