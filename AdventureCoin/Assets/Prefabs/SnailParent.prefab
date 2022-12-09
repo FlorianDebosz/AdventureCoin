@@ -12,9 +12,6 @@ GameObject:
   - component: {fileID: 2705384126990503548}
   - component: {fileID: 2705384126990503549}
   - component: {fileID: 2705384126990503550}
-  - component: {fileID: 2705384126990503551}
-  - component: {fileID: 2705384126990503544}
-  - component: {fileID: 8724015506949726908}
   m_Layer: 0
   m_Name: Snail (4)
   m_TagString: SnailDamage
@@ -101,46 +98,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.021078495, y: 0.020164225, z: 0.020783627}
   m_Center: {x: -0.0005392478, y: -0.00008210409, z: 0.00039181503}
---- !u!65 &2705384126990503551
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2705384126990503545}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.0028880553, y: 0.007356815, z: 0.019832466}
-  m_Center: {x: -0.008341395, y: 0.0059850663, z: 0.026568975}
---- !u!65 &2705384126990503544
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2705384126990503545}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.0028880553, y: 0.0074349395, z: 0.019832466}
-  m_Center: {x: -0.008341392, y: -0.0059598726, z: 0.026568975}
---- !u!114 &8724015506949726908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2705384126990503545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ba078a0e8f5c444fa6e8d637faf5062, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newColorGrass: {r: 0, g: 0, b: 0, a: 0}
-  timeColor: 0
 --- !u!1 &2705384127337646858
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7749cfa31ff5ffd4da63878a6a83c156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceDectect: 5
+  distanceDectect: 5.5
   points:
   - {fileID: 0}
   - {fileID: 0}
