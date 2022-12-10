@@ -57,8 +57,6 @@ public class PlayerCollide : MonoBehaviour
             StartCoroutine("EnableControls"); //Desactivate Controls
             audioSource.PlayOneShot(splashSound);
             StartCoroutine("Restart");
-            
-            
         }
     }
 
@@ -110,7 +108,7 @@ public class PlayerCollide : MonoBehaviour
                 audioSource.PlayOneShot(hurtedSound);
 
                 //Teleport
-                StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit(cc));
+                StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit());
                 StartCoroutine("EnableControls"); //Enable Controls
             }else{
                 if(!contactSound){
@@ -125,8 +123,8 @@ public class PlayerCollide : MonoBehaviour
             }
 
         }else if(collision.gameObject.tag == "SnailHurted") {
-                collision.gameObject.transform.parent.gameObject.GetComponent<Collider>().enabled = false;
-                if (!contact){
+            collision.gameObject.transform.parent.gameObject.GetComponent<Collider>().enabled = false;
+            if (!contact){
                 contact = true;
                 audioSource.PlayOneShot(hitSound);
                 iTween.PunchScale(collision.gameObject.transform.parent.gameObject,new Vector3(30,30,30),0.5f);
@@ -138,7 +136,7 @@ public class PlayerCollide : MonoBehaviour
                 Destroy(snailsHit, 0.7f);
                 Destroy(collision.gameObject.transform.parent.gameObject,0.6f);
                 StartCoroutine("ResetContact");
-                }
+            }
         }
     }
         //Coroutine permettant d'attendre 0.8 secondes et de réactiver le contact

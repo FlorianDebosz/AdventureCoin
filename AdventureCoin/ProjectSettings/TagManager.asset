@@ -10,10 +10,10 @@ TagManager:
   - TopShell
   - Cam2
   - Cam3
-  - checkpoint
   - void
   - water
   - Coin
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
