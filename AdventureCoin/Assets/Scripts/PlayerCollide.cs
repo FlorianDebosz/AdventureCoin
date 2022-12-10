@@ -10,9 +10,8 @@ public class PlayerCollide : MonoBehaviour
     public bool lockRotation = false;
 
     //Private
-    [SerializeField] private GameObject pickUpParticles;
-    [SerializeField] private GameObject snailsParticles;
-    [SerializeField] private GameObject mainCam,Camera1,Camera2;
+
+    [SerializeField] private GameObject pickUpParticles,snailsParticles,mainCam,Camera1,Camera2,coinLoot;
     [SerializeField] private PlayController playController;
     [SerializeField] private AudioClip hitSound,coinCollectSound,splashSound,victorySound,gameoverSound,hurtedSound;
     [SerializeField] private SkinnedMeshRenderer renderPlayer;
@@ -55,12 +54,9 @@ public class PlayerCollide : MonoBehaviour
 
 
         if(other.gameObject.tag == "water"){
-            //TODO : Ajouter une animation
             StartCoroutine("EnableControls"); //Desactivate Controls
             audioSource.PlayOneShot(splashSound);
             StartCoroutine("Restart");
-            
-            
         }
     }
 
@@ -112,7 +108,7 @@ public class PlayerCollide : MonoBehaviour
                 audioSource.PlayOneShot(hurtedSound);
 
                 //Teleport
-                StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit(cc));
+                StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit());
                 StartCoroutine("EnableControls"); //Enable Controls
             }else{
                 if(!contactSound){
@@ -126,14 +122,21 @@ public class PlayerCollide : MonoBehaviour
                 StartCoroutine("Restart");
             }
 
-        }else if(collision.gameObject.tag == "SnailHurted" && !contact && !cc.isGrounded) {
+        }else if(collision.gameObject.tag == "SnailHurted") {
+            collision.gameObject.transform.parent.gameObject.GetComponent<Collider>().enabled = false;
+            if (!contact){
                 contact = true;
                 audioSource.PlayOneShot(hitSound);
                 iTween.PunchScale(collision.gameObject.transform.parent.gameObject,new Vector3(30,30,30),0.5f);
                 GameObject snailsHit = Instantiate(snailsParticles, collision.transform.position, Quaternion.identity);
+
+                //Call Looting function
+                Loot(coinLoot,2,collision.transform.position);
+
                 Destroy(snailsHit, 0.7f);
                 Destroy(collision.gameObject.transform.parent.gameObject,0.6f);
                 StartCoroutine("ResetContact");
+            }
         }
     }
         //Coroutine permettant d'attendre 0.8 secondes et de réactiver le contact
@@ -175,5 +178,11 @@ public class PlayerCollide : MonoBehaviour
         IEnumerator Restart() {
         yield return new WaitForSeconds(1.2f);
         SceneManager.LoadScene("Level_One");
+    }
+
+    private void Loot(GameObject loot, int numberOfLoot, Vector3 position){
+        for(int i = 0; i < numberOfLoot; i++){
+            Instantiate(loot, position + new Vector3(Random.Range(-2f,2f),0,Random.Range(-2f,2f)) , Quaternion.identity * Quaternion.Euler(-90,0,0));
+        }
     }
 }
