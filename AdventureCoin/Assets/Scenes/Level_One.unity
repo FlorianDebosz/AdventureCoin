@@ -2545,7 +2545,7 @@ GameObject:
   - component: {fileID: 381501846}
   - component: {fileID: 381501845}
   m_Layer: 5
-  m_Name: ScoreValue
+  m_Name: TextInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2565,10 +2565,10 @@ RectTransform:
   m_Father: {fileID: 2047838007}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -110.20001, y: 22.099976}
-  m_SizeDelta: {x: 210, y: 35}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -0, y: 22.099976}
+  m_SizeDelta: {x: 790, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &381501845
 MonoBehaviour:
@@ -2596,7 +2596,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 3
     m_MaxSize: 42
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -6506,7 +6506,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1132847984}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1132847988
 Camera:
   m_ObjectHideFlags: 0
@@ -8478,6 +8478,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121117558276617005, guid: a085345b0c08481438f94d45c2bd6fa3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cage
+      objectReference: {fileID: 0}
+    - target: {fileID: 5377591247834979423, guid: a085345b0c08481438f94d45c2bd6fa3,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 5436595532985455777, guid: a085345b0c08481438f94d45c2bd6fa3,
         type: 3}
@@ -13469,6 +13479,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastPoint: {x: 0, y: 0, z: 0}
+--- !u!114 &919132147730226039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147730226037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a328a295658a7b4a86f8b6b82e7338b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoText: {fileID: 381501845}
 --- !u!1 &919132148509709700
 GameObject:
   m_ObjectHideFlags: 0
