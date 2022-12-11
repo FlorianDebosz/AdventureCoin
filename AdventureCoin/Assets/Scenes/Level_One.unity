@@ -13492,6 +13492,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoText: {fileID: 381501845}
+  audioSource: {fileID: 919132147730226045}
+--- !u!82 &919132147730226045 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 654440843805445443, guid: 1bb805f822226f043b3f5273e3877573,
+    type: 3}
+  m_PrefabInstance: {fileID: 654440842346425199}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &919132148509709700
 GameObject:
   m_ObjectHideFlags: 0

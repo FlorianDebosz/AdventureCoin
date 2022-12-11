@@ -6,8 +6,12 @@ public class FriendsScripts : MonoBehaviour
 {
     private GameObject actualCage;
     [SerializeField] private Text infoText;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip fallPadlock;
+    
     private bool canOpen = false;
     private void OnTriggerEnter(Collider other)
+
     {
         if(other.gameObject.tag == "Cage"){
             actualCage = other.gameObject;
@@ -27,6 +31,7 @@ public class FriendsScripts : MonoBehaviour
     public void OnOpenCage(){
         if(canOpen){
             iTween.ShakeScale(actualCage, new Vector3(25,25,80), 1);
+            audioSource.PlayOneShot(fallPadlock);
             Destroy(actualCage,1.2f);
             canOpen = false;
             infoText.text = "";
