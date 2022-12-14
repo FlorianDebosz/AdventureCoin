@@ -10,14 +10,14 @@ public class FriendsScripts : MonoBehaviour
     [SerializeField] private AudioClip fallPadlock;
     
     private bool canOpen = false;
+    
     private void OnTriggerEnter(Collider other)
-
     {
         if(other.gameObject.tag == "Cage"){
             actualCage = other.gameObject;
             infoText.text = "Appuyer sur e pour ouvrir la cage";
             canOpen = true;
-        }       
+        }
     }
 
     private void OnTriggerExit(Collider other){
@@ -28,13 +28,39 @@ public class FriendsScripts : MonoBehaviour
         }
     }
 
-    public void OnOpenCage(){
+    private void OnOpenCage(){
         if(canOpen){
+            
+            //Animation
             iTween.ShakeScale(actualCage, new Vector3(25,25,80), 1);
+            
+            //Audio
             audioSource.PlayOneShot(fallPadlock);
-            Destroy(actualCage,1.2f);
+            
             canOpen = false;
             infoText.text = "";
+            
+            
+            StartCoroutine("DestroyCage");
+            StartCoroutine("HideText");
         }
+    }
+
+    private IEnumerator DestroyCage(){
+        yield return new WaitForSeconds(1f);
+        //Destroy Cage
+        Destroy(actualCage.GetComponent<MeshRenderer>());
+        Destroy(actualCage.GetComponent<BoxCollider>());
+        Destroy(actualCage.GetComponent<SphereCollider>());
+
+        // Show Text
+        actualCage.transform.GetChild(0).gameObject.GetComponent<Canvas>().enabled = true;
+    }
+
+        private IEnumerator HideText(){
+        yield return new WaitForSeconds(2f);
+    
+        // Hide Text
+        actualCage.transform.GetChild(0).gameObject.GetComponent<Canvas>().enabled = false;
     }
 }
