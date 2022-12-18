@@ -15,16 +15,17 @@ public class PlayController : MonoBehaviour
 
 
     //public
-    public int PlayerHP { get; private set; }
+    // public int PlayerHP { get; private set; }
+    public static PlayController playerController;
     public int camActive;
 
-
-
+    // Function
     void Start() {
         cc = GetComponent<CharacterController>();
         isWalkingAnim = GetComponent<Animator>();
         isWalking = false;
     }
+
     void Update() {
         isWalkingAnim.SetBool("IsWalking",isWalking);
         //Gravity
