@@ -26,9 +26,6 @@ public class ChickAI : MonoBehaviour
                 chickCollider.enabled = false; // Still not sure about disabling ChickCollider
             }
         }
-
-        
-        
     }
 
 }
