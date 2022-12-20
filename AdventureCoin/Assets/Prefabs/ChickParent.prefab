@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4034125172945160890
+--- !u!1 &1995881300735010253
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,100 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4034125172945160868}
-  - component: {fileID: 4034125172945160891}
+  - component: {fileID: 2768941166682930261}
+  - component: {fileID: 3226590520350980150}
+  - component: {fileID: 6089184485057220659}
+  - component: {fileID: 6075291861603028681}
   m_Layer: 0
-  m_Name: ChickParent
+  m_Name: Chick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4034125172945160868
+--- !u!4 &2768941166682930261
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4034125172945160890}
-  m_LocalRotation: {x: -0.00000017881393, y: -0.30100965, z: 0.000000014901161, w: 0.95362115}
-  m_LocalPosition: {x: -19.46, y: 3.2723703, z: 49.32}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 5034624058455004321}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 123.92, y: 89.99999, z: 89.99999}
---- !u!195 &4034125172945160891
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4034125172945160890}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.589
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.22
-  m_BaseOffset: 0.97
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!1 &8647221131711368505
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5034624058455004321}
-  - component: {fileID: 5725469589138460866}
-  - component: {fileID: 3977509413902104775}
-  - component: {fileID: 4034125172601808445}
-  m_Layer: 0
-  m_Name: Chick
-  m_TagString: Chick
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5034624058455004321
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8647221131711368505}
-  m_LocalRotation: {x: -0.38413417, y: 0.3841342, z: -0.5936674, w: 0.5936674}
-  m_LocalPosition: {x: -0.51, y: -0, z: -0.13}
-  m_LocalScale: {x: 4.7802453, y: 3.8635156, z: 14.403069}
+  m_GameObject: {fileID: 1995881300735010253}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.015840903, y: 0, z: -0.4388319}
+  m_LocalScale: {x: 4.7802453, y: 3.8635154, z: 14.403069}
   m_Children: []
-  m_Father: {fileID: 4034125172945160868}
+  m_Father: {fileID: 6075291861928665680}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 65.810005, z: -90}
---- !u!33 &5725469589138460866
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -90}
+--- !u!33 &3226590520350980150
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8647221131711368505}
+  m_GameObject: {fileID: 1995881300735010253}
   m_Mesh: {fileID: -4946391091612121539, guid: 760c294452155b24e801454dc828eefe, type: 3}
---- !u!23 &3977509413902104775
+--- !u!23 &6089184485057220659
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8647221131711368505}
+  m_GameObject: {fileID: 1995881300735010253}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -136,13 +82,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &4034125172601808445
+--- !u!64 &6075291861603028681
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8647221131711368505}
+  m_GameObject: {fileID: 1995881300735010253}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -150,3 +96,114 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4946391091612121539, guid: 760c294452155b24e801454dc828eefe, type: 3}
+--- !u!1 &6075291861928665678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6075291861928665680}
+  - component: {fileID: 6075291861928665679}
+  - component: {fileID: 6075291862082836782}
+  - component: {fileID: 6075291862082836784}
+  m_Layer: 0
+  m_Name: ChickParent
+  m_TagString: Chick
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6075291861928665680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6075291861928665678}
+  m_LocalRotation: {x: 0, y: 0.2712724, z: -0, w: 0.96250266}
+  m_LocalPosition: {x: -19.555, y: 3.2723703, z: 49.43}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2768941166682930261}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 180, y: 211.48, z: 180}
+--- !u!195 &6075291861928665679
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6075291861928665678}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.589
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.22
+  m_BaseOffset: 0.97
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &6075291862082836782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6075291861928665678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db92cb204b3a4a84191b188e02113043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  chickCollider: {fileID: 6075291861603028681}
+  moveSpeed: 7
+  actualSpeed: 0
+  oldPosition: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
+--- !u!114 &6075291862082836784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6075291861928665678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60b402f419a86d478805058abc77f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Method: 2
+  m_Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

@@ -11,7 +11,6 @@ public class FriendsScripts : MonoBehaviour
     [SerializeField] private AudioClip fallPadlock;
 
     private bool canOpen = false;
-    public bool canMove = false;
 
     private void Start() {
         friendsScripts = this;
@@ -71,6 +70,5 @@ public class FriendsScripts : MonoBehaviour
     
         // Hide Text
         actualCage.transform.GetChild(0).gameObject.GetComponent<Canvas>().enabled = false;
-        canMove = true;
     }
 }
