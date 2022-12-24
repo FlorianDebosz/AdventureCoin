@@ -10,10 +10,13 @@ public class FriendsScripts : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip fallPadlock;
 
+    public int friendsSaved;
+
     private bool canOpen = false;
 
     private void Start() {
         friendsScripts = this;
+        friendsSaved = 0;
     }
     
     private void OnTriggerEnter(Collider other)
@@ -50,7 +53,8 @@ public class FriendsScripts : MonoBehaviour
             StartCoroutine("HideText");
             StartCoroutine(PlayerCollide.playerCollider.EnableControls(2.7f));
             Destroy(actualCage,2.7f);
-
+            friendsSaved += 1;
+            PauseScript.pauseScript.setChickObjText();
         }
     }
 
