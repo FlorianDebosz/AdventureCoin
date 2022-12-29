@@ -9701,7 +9701,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "- 0 Amis sur 3 lib\xE9r\xE9"
+  m_Text: Liberer vos amis
 --- !u!222 &1623049255
 CanvasRenderer:
   m_ObjectHideFlags: 0
