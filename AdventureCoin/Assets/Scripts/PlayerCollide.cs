@@ -54,7 +54,7 @@ public class PlayerCollide : MonoBehaviour
 
 
         if(other.gameObject.tag == "water"){
-            StartCoroutine("EnableControls"); //Desactivate Controls
+            StartCoroutine("EnableControls",1.9f); //Desactivate Controls
             audioSource.PlayOneShot(splashSound);
             StartCoroutine("Restart");
         }
@@ -98,7 +98,7 @@ public class PlayerCollide : MonoBehaviour
                 isInvincible = true;
                 
                 StartCoroutine("ResetInvincible");
-                StartCoroutine("EnableControls"); //Disable Controls
+                StartCoroutine(EnableControls(1.9f)); //Disable Controls
 
                 //Animation
                 iTween.MoveAdd(gameObject,Vector3.back * 2, .5f); // Move Back Player
@@ -109,11 +109,14 @@ public class PlayerCollide : MonoBehaviour
 
                 //Teleport
                 StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit());
-                StartCoroutine("EnableControls"); //Enable Controls
+                StartCoroutine(EnableControls(1.9f)); //Enable Controls
             }else{
                 if(!contactSound){
+                    PlayerInfos.playerInfos.SetHealth(-1);
                     StartCoroutine("ResetInvincible");
-                    StartCoroutine("EnableControls"); //Disable Controls
+                    StartCoroutine(EnableControls(1.9f)); //Disable Controls
+
+                    //Animation
                     iTween.MoveAdd(gameObject,Vector3.back * 2, .5f); // Move Back Player
                     iTween.PunchScale(gameObject,new Vector3( .3f, .3f, .3f), .6f); // Scale player
                     contactSound = true;
@@ -154,16 +157,16 @@ public class PlayerCollide : MonoBehaviour
         isInvincible = false;
     }
 
-    IEnumerator EnableControls() {
+    public IEnumerator EnableControls(float timer) {
         if (cc.enabled == true && lockRotation == false){
             cc.enabled = !cc.enabled;
             lockRotation = !lockRotation;
+            yield return new WaitForSeconds(timer);
         }else if(cc.enabled == false && lockRotation == true){
-            yield return new WaitForSeconds(1.9f);
+            yield return new WaitForSeconds(timer);
             cc.enabled = !cc.enabled;
             lockRotation = !lockRotation;
         }
-        yield return new WaitForSeconds(0f);
     }
 
     //Getter CharacterController Position

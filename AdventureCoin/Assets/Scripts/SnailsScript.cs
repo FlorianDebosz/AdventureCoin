@@ -4,19 +4,19 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class AIScripts : MonoBehaviour
+public class SnailsScript : MonoBehaviour
 {   
     [Range(0.5f,50f)] //Slider for adapt distanceDectect
     [SerializeField] private float distanceDectect = 3f;
     [SerializeField] private Transform[] points;
     private int destinationIndex = 0;
     private NavMeshAgent agent;
-    private Transform player;
+    private Transform playerTransform;
     private float speedMax, speedMin;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         if(agent != null){
             destinationIndex = Random.Range(0,points.Length);
@@ -32,7 +32,7 @@ public class AIScripts : MonoBehaviour
     }
 
     private void SetMobSize(){
-        if(Vector3.Distance(transform.position, player.position) <= distanceDectect + 1.2){
+        if(Vector3.Distance(transform.position, playerTransform.position) <= distanceDectect + 1.2){
             iTween.ScaleTo(gameObject,Vector3.one, 0.7f);
         }else{
             iTween.ScaleTo(gameObject,new Vector3(0.2f,0.2f,0.2f), 0.7f);
@@ -41,10 +41,10 @@ public class AIScripts : MonoBehaviour
 
     //Search player
     private void SearchPlayer(){
-        float distanceFromPlayer = Vector3.Distance(transform.position,player.position);
+        float distanceFromPlayer = Vector3.Distance(transform.position,playerTransform.position);
         if (distanceFromPlayer <= distanceDectect){
             //Player Detected
-            agent.destination = player.position;
+            agent.destination = playerTransform.position;
             agent.speed = speedMax;
         }else {
             agent.destination = points[destinationIndex].position;
