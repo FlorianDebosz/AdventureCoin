@@ -22,6 +22,8 @@ public class PlayerCollide : MonoBehaviour
     [SerializeField] private bool contact = false, contactSound = false;
     [SerializeField] private bool isInvincible = false;
 
+    private int snailsNumberOfLoot = 2;
+
     private void Awake(){
             playController = GetComponent<PlayController>();
             audioSource = GetComponent<AudioSource>();
@@ -40,6 +42,7 @@ public class PlayerCollide : MonoBehaviour
             Destroy(coinParticles, 0.5f);
             Destroy(other.gameObject);
             PlayerInfos.playerInfos.GetCoins();
+            PauseScript.pauseScript.setCoinObjText();
         }
 
         if(other.gameObject.name == "EndZone"){
@@ -134,7 +137,7 @@ public class PlayerCollide : MonoBehaviour
                 GameObject snailsHit = Instantiate(snailsParticles, collision.transform.position, Quaternion.identity);
 
                 //Call Looting function
-                Loot(coinLoot,2,collision.transform.position);
+                Loot(coinLoot,snailsNumberOfLoot,collision.transform.position);
 
                 Destroy(snailsHit, 0.7f);
                 Destroy(collision.gameObject.transform.parent.gameObject,0.6f);
@@ -187,5 +190,9 @@ public class PlayerCollide : MonoBehaviour
         for(int i = 0; i < numberOfLoot; i++){
             Instantiate(loot, position + new Vector3(Random.Range(-2f,2f),0,Random.Range(-2f,2f)) , Quaternion.identity * Quaternion.Euler(-90,0,0));
         }
+    }
+
+    public int getsnailsNumberOfLoot(){
+        return snailsNumberOfLoot;
     }
 }

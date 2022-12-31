@@ -8,6 +8,7 @@ public class PlayController : MonoBehaviour
     [SerializeField] private float moveSpeed,jumpForce,gravity;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private GameObject mapCam;
     private Vector3 moveDir;
     private float AxisZ,AxisX;
     private Animator isWalkingAnim;
@@ -15,7 +16,6 @@ public class PlayController : MonoBehaviour
 
 
     //public
-    // public int PlayerHP { get; private set; }
     public static PlayController playerController;
     public int camActive;
 
@@ -55,7 +55,6 @@ public class PlayController : MonoBehaviour
             }
             cc.Move(moveDir * Time.deltaTime);
         }
-
     }
     
     //Jump Function
@@ -70,5 +69,13 @@ public class PlayController : MonoBehaviour
     }                                         
     public void OnSideMoves(InputValue moves) {
             AxisX = moves.Get<float>();
+    }
+
+    public void OnOpenMap() {
+        mapCam.SetActive(true);
+    }
+    
+    public void OnCloseMap() {
+        mapCam.SetActive(false);
     }
 }
