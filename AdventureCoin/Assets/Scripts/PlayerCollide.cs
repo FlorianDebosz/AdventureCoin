@@ -142,6 +142,8 @@ public class PlayerCollide : MonoBehaviour
                 Destroy(snailsHit, 0.7f);
                 Destroy(collision.gameObject.transform.parent.gameObject,0.6f);
                 StartCoroutine("ResetContact");
+                PlayerInfos.playerInfos.setSnailsKilled();
+                PauseScript.pauseScript.setSnailsObjText();
             }
         }
     }

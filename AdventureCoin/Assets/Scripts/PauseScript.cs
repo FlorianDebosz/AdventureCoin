@@ -11,11 +11,14 @@ public class PauseScript : MonoBehaviour
     [SerializeField] private GameObject menuPause;
     [SerializeField] private Text chickObjText;
     [SerializeField] private Text coinObjText;
+    [SerializeField] private Text snailsObjText;
+
+    
 
     private GameObject[] coinObj;
     private GameObject[] snailsObj;
 
-    private int coinMax,snailsMax;
+    private int coinMax;
 
     private void Start() {
         pauseScript = this;
@@ -30,6 +33,10 @@ public class PauseScript : MonoBehaviour
 
     public void setCoinObjText() {
         coinObjText.text = "- " + PlayerInfos.playerInfos.coinAmount + " Pièces collectés sur " + coinMax;
+    }
+
+    public void setSnailsObjText() {
+        snailsObjText.text = "- " + PlayerInfos.playerInfos.getSnailsKilled() + " Ennemis vaincus sur " + snailsObj.Length;
     }
 
 
