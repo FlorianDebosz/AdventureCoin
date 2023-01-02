@@ -112,6 +112,7 @@ public class PlayerCollide : MonoBehaviour
                 //Verify InfoText
                 if(FriendsScripts.friendsScripts.GetInfoText() != ""){
                     FriendsScripts.friendsScripts.SetInfoText("");
+                    FriendsScripts.friendsScripts.ChangeTextState(false);
                 }
 
                 //Teleport

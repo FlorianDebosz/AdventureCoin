@@ -24,6 +24,7 @@ public class FriendsScripts : MonoBehaviour
         if(other.gameObject.tag == "Cage"){
             actualCage = other.gameObject;
             SetInfoText("Appuyer sur e pour ouvrir la cage");
+            ChangeTextState(true);
             canOpen = true;
         }
 
@@ -33,6 +34,7 @@ public class FriendsScripts : MonoBehaviour
         if(other.gameObject.tag == "Cage"){
             actualCage = null;
             SetInfoText("");
+            ChangeTextState(false);
             canOpen = false;
         }
     }
@@ -82,5 +84,9 @@ public class FriendsScripts : MonoBehaviour
 
     public string GetInfoText(){
         return infoText.text;
+    }
+
+    public void ChangeTextState(bool isVisible){
+        infoText.gameObject.SetActive(isVisible);
     }
 }
