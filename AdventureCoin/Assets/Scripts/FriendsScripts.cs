@@ -23,7 +23,7 @@ public class FriendsScripts : MonoBehaviour
     {
         if(other.gameObject.tag == "Cage"){
             actualCage = other.gameObject;
-            infoText.text = "Appuyer sur e pour ouvrir la cage";
+            SetInfoText("Appuyer sur e pour ouvrir la cage");
             canOpen = true;
         }
 
@@ -32,7 +32,7 @@ public class FriendsScripts : MonoBehaviour
     private void OnTriggerExit(Collider other){
         if(other.gameObject.tag == "Cage"){
             actualCage = null;
-            infoText.text = "";
+            SetInfoText("");
             canOpen = false;
         }
     }
@@ -74,5 +74,13 @@ public class FriendsScripts : MonoBehaviour
     
         // Hide Text
         actualCage.transform.GetChild(0).gameObject.GetComponent<Canvas>().enabled = false;
+    }
+
+    public void SetInfoText(string text){
+        infoText.text = text;
+    }
+
+    public string GetInfoText(){
+        return infoText.text;
     }
 }

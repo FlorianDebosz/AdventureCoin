@@ -109,6 +109,11 @@ public class PlayerCollide : MonoBehaviour
                 //Sound
                 audioSource.PlayOneShot(hurtedSound);
 
+                //Verify InfoText
+                if(FriendsScripts.friendsScripts.GetInfoText() != ""){
+                    FriendsScripts.friendsScripts.SetInfoText("");
+                }
+
                 //Teleport
                 StartCoroutine(CheckpointMgr.checkpointMgr.RespawnByHit());
                 StartCoroutine(EnableControls(1.9f)); //Enable Controls
