@@ -9,6 +9,7 @@ public class PlayerInfos : MonoBehaviour
     public static PlayerInfos playerInfos;
     public int playerHealth = 3;
     public int coinAmount = 0;
+    private int snailsKilled = 0;
     public Image[] hearts;
     public Text coinTxtAmount,scoreTxt;
 
@@ -45,8 +46,19 @@ public class PlayerInfos : MonoBehaviour
     }
 
     public int GetScore(){
-        int scoreFinal = coinAmount + (playerHealth * 10) + (FriendsScripts.friendsScripts.friendsSaved * 5);
-        scoreTxt.text = "Score : " + scoreFinal;
+        int scoreFinal = (coinAmount * 5) + (playerHealth * 100) + (FriendsScripts.friendsScripts.friendsSaved * 10);
         return scoreFinal;
+    }
+
+    public void SetScoreText(){
+        scoreTxt.text = "Score : " + GetScore();
+    }
+
+    public void setSnailsKilled(){
+        snailsKilled++;
+    }
+
+    public int getSnailsKilled(){
+        return snailsKilled;
     }
 }

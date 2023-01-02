@@ -21,6 +21,7 @@ public class PlayerCollide : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private bool contact = false, contactSound = false;
     [SerializeField] private bool isInvincible = false;
+    private int snailsNumberOfLoot = 2;
 
     private void Awake(){
             playController = GetComponent<PlayController>();
@@ -40,10 +41,11 @@ public class PlayerCollide : MonoBehaviour
             Destroy(coinParticles, 0.5f);
             Destroy(other.gameObject);
             PlayerInfos.playerInfos.GetCoins();
+            PauseScript.pauseScript.setCoinObjText();
         }
 
         if(other.gameObject.name == "EndZone"){
-            PlayerInfos.playerInfos.GetScore();
+            EndScript.endScript.End();
             audioSource.PlayOneShot(victorySound);
         }
         
@@ -134,11 +136,13 @@ public class PlayerCollide : MonoBehaviour
                 GameObject snailsHit = Instantiate(snailsParticles, collision.transform.position, Quaternion.identity);
 
                 //Call Looting function
-                Loot(coinLoot,2,collision.transform.position);
+                Loot(coinLoot,snailsNumberOfLoot,collision.transform.position);
 
                 Destroy(snailsHit, 0.7f);
                 Destroy(collision.gameObject.transform.parent.gameObject,0.6f);
                 StartCoroutine("ResetContact");
+                PlayerInfos.playerInfos.setSnailsKilled();
+                PauseScript.pauseScript.setSnailsObjText();
             }
         }
     }
@@ -178,7 +182,7 @@ public class PlayerCollide : MonoBehaviour
         yield return new WaitForSeconds(2.1f);
         iTween.StopByName("colorHit");
     }
-        IEnumerator Restart() {
+    IEnumerator Restart() {
         yield return new WaitForSeconds(1.2f);
         SceneManager.LoadScene("Level_One");
     }
@@ -187,5 +191,9 @@ public class PlayerCollide : MonoBehaviour
         for(int i = 0; i < numberOfLoot; i++){
             Instantiate(loot, position + new Vector3(Random.Range(-2f,2f),0,Random.Range(-2f,2f)) , Quaternion.identity * Quaternion.Euler(-90,0,0));
         }
+    }
+
+    public int getsnailsNumberOfLoot(){
+        return snailsNumberOfLoot;
     }
 }
