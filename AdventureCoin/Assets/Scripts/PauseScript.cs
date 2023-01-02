@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseScript : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PauseScript : MonoBehaviour
     [SerializeField] private Text chickObjText;
     [SerializeField] private Text coinObjText;
     [SerializeField] private Text snailsObjText;
+
 
     
 
@@ -66,5 +68,13 @@ public class PauseScript : MonoBehaviour
             audioSource.PlayOneShot(unpauseSound);
             Time.timeScale = 1f;
         }
+    }
+
+    public void BackToMenu(){
+        SceneManager.LoadScene("Menu");
+    }
+    
+    public void QuitGame(){
+        Application.Quit();
     }
 }
