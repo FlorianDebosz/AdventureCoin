@@ -17,6 +17,7 @@ public class PauseScript : MonoBehaviour
 
     private GameObject[] coinObj;
     private GameObject[] snailsObj;
+    private GameObject[] chickObj;
 
     private int coinMax;
 
@@ -24,19 +25,29 @@ public class PauseScript : MonoBehaviour
         pauseScript = this;
         coinObj = GameObject.FindGameObjectsWithTag("Coin");
         snailsObj = GameObject.FindGameObjectsWithTag("Snails");
+        chickObj = GameObject.FindGameObjectsWithTag("Chick");
         coinMax = coinObj.Length + (snailsObj.Length * PlayerCollide.playerCollider.getsnailsNumberOfLoot());
     }
 
     public void setChickObjText() {
-        chickObjText.text = "- " + FriendsScripts.friendsScripts.friendsSaved + " Amis sur 3 libéré";
+        if(FriendsScripts.friendsScripts.friendsSaved >= chickObj.Length)
+            chickObjText.text = "<color=#838383>- " + FriendsScripts.friendsScripts.friendsSaved + " Amis sur " + chickObj.Length + " libéré </color>";
+        else
+            chickObjText.text = "- " + FriendsScripts.friendsScripts.friendsSaved + " Amis sur " + chickObj.Length + " libéré";
     }
 
     public void setCoinObjText() {
-        coinObjText.text = "- " + PlayerInfos.playerInfos.coinAmount + " Pièces collectés sur " + coinMax;
+        if(PlayerInfos.playerInfos.coinAmount >= coinMax)
+            coinObjText.text = "<color=#838383>- " + PlayerInfos.playerInfos.coinAmount + " Pièces collectés sur " + coinMax + "</color>";
+        else
+            coinObjText.text = "- " + PlayerInfos.playerInfos.coinAmount + " Pièces collectés sur " + coinMax;
     }
 
     public void setSnailsObjText() {
-        snailsObjText.text = "- " + PlayerInfos.playerInfos.getSnailsKilled() + " Ennemis vaincus sur " + snailsObj.Length;
+        if(PlayerInfos.playerInfos.getSnailsKilled() >= snailsObj.Length)
+            snailsObjText.text = "<color=#838383>- " + PlayerInfos.playerInfos.getSnailsKilled() + " Ennemis vaincus sur " + snailsObj.Length + "</color>";
+        else
+            snailsObjText.text = "- " + PlayerInfos.playerInfos.getSnailsKilled() + " Ennemis vaincus sur " + snailsObj.Length;
     }
 
 

@@ -47,8 +47,11 @@ public class PlayerInfos : MonoBehaviour
 
     public int GetScore(){
         int scoreFinal = (coinAmount * 5) + (playerHealth * 100) + (FriendsScripts.friendsScripts.friendsSaved * 10);
-        scoreTxt.text = "Score : " + scoreFinal;
         return scoreFinal;
+    }
+
+    public void SetScoreText(){
+        scoreTxt.text = "Score : " + GetScore();
     }
 
     public void setSnailsKilled(){

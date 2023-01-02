@@ -27,7 +27,7 @@ public class PlayController : MonoBehaviour
     }
 
     void Update() {
-        if(!PauseScript.pauseScript.isPaused){
+        if(!PauseScript.pauseScript.isPaused && EndScript.endScript.getLvlEnd() == false){
             isWalkingAnim.SetBool("IsWalking",isWalking);
             //Gravity
             if(moveDir.y > -gravity) {

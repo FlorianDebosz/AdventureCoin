@@ -21,7 +21,6 @@ public class PlayerCollide : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private bool contact = false, contactSound = false;
     [SerializeField] private bool isInvincible = false;
-
     private int snailsNumberOfLoot = 2;
 
     private void Awake(){
@@ -46,7 +45,7 @@ public class PlayerCollide : MonoBehaviour
         }
 
         if(other.gameObject.name == "EndZone"){
-            PlayerInfos.playerInfos.GetScore();
+            EndScript.endScript.End();
             audioSource.PlayOneShot(victorySound);
         }
         
@@ -183,7 +182,7 @@ public class PlayerCollide : MonoBehaviour
         yield return new WaitForSeconds(2.1f);
         iTween.StopByName("colorHit");
     }
-        IEnumerator Restart() {
+    IEnumerator Restart() {
         yield return new WaitForSeconds(1.2f);
         SceneManager.LoadScene("Level_One");
     }
