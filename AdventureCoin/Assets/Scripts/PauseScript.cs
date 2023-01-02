@@ -19,6 +19,9 @@ public class PauseScript : MonoBehaviour
     private GameObject[] snailsObj;
     private GameObject[] chickObj;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pauseSound,unpauseSound;
+
     private int coinMax;
 
     private void Start() {
@@ -53,13 +56,14 @@ public class PauseScript : MonoBehaviour
 
 
     public void OnPause() {
-        //TODO: play sound
         isPaused = !isPaused;
         menuPause.SetActive(isPaused);
 
         if(isPaused){
+            audioSource.PlayOneShot(pauseSound);
             Time.timeScale = 0f;
         }else{
+            audioSource.PlayOneShot(unpauseSound);
             Time.timeScale = 1f;
         }
     }
