@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
+     [SerializeField] private Text version;
+     private void Awake() {
+          version.text = Application.version;
+     }
+
+
      public void LoadLevelOne(){
           SceneManager.LoadScene(1);
      }
