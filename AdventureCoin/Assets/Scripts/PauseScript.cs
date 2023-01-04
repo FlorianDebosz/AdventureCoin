@@ -77,4 +77,15 @@ public class PauseScript : MonoBehaviour
     public void QuitGame(){
         Application.Quit();
     }
+    
+    public int GetChickMax(){
+        return chickObj.Length;
+    }
+
+    public int GetCoinMax(){
+        return coinObj.Length;
+    }
+    public int GetSnailsMax(){
+        return snailsObj.Length;
+    }
 }
