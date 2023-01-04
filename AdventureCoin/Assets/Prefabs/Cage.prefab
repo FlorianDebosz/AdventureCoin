@@ -540,8 +540,8 @@ GameObject:
   - component: {fileID: 2025364690390269145}
   - component: {fileID: 4946565264057922549}
   - component: {fileID: 1044017514248789767}
-  m_Layer: 0
-  m_Name: Cylinder
+  m_Layer: 11
+  m_Name: MapTips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
